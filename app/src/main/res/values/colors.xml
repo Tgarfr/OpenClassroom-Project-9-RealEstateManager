@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    // Estate List
+    <color name="estate_list_price">#EE2368</color>
+    <color name="estate_list_dividing_bar">#E3E3E3</color>
 </resources>
