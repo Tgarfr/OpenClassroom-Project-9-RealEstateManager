@@ -1,3 +1,17 @@
 <resources>
+
     <string name="app_name">Real Estate Manager</string>
+
+    // Estate
+    <string name="estate_type_house">House</string>
+    <string name="estate_type_duplex">Duplex</string>
+    <string name="estate_type_flat">Flat</string>
+    <string name="estate_type_penthouse">Penthouse</string>
+
+    // Estate List
+    <string name="estate_list_type">House</string>
+    <string name="estate_list_city">Manhattan</string>
+    <string name="estate_list_price">$17,666,765</string>
+    <string name="estate_list_picture">Estate list picture</string>
+
 </resources>
