@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.openclassrooms.realestatemanager.R
@@ -12,10 +13,17 @@ import com.openclassrooms.realestatemanager.model.Estate
 import java.text.DecimalFormat
 
 class EstateListAdapter(
+    private val estateListAdapterListener: EstateListAdapterListener,
     private val resources: Resources
 ) : ListAdapter<Estate, EstateListAdapter.ViewHolder>(ItemDiffCallback()) {
 
     private val decimalFormat: DecimalFormat = DecimalFormat("$#,###.00")
+    private var selectedEstate: Estate? = null
+    private var lastSelectedEstate: Estate? = null
+
+    interface EstateListAdapterListener {
+        fun onEstateItemClick(estate: Estate)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -28,9 +36,19 @@ class EstateListAdapter(
         holder.type.text = getEstateTypeString(estate.type)
         holder.city.text = estate.city
         holder.price.text = decimalFormat.format(estate.price)
+        holder.itemView.setOnClickListener { estateListAdapterListener.onEstateItemClick(estate) }
+        if (selectedEstate == estate) {
+            holder.itemView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.estate_list_selected_estate, null))
+            holder.price.setHintTextColor(ResourcesCompat.getColor(resources, R.color.estate_list_selected_estate_text, null))
+        }
+        if (lastSelectedEstate == estate) {
+            holder.itemView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.design_default_color_background, null))
+            holder.price.setHintTextColor(ResourcesCompat.getColor(resources, R.color.estate_list_price, null))
+        }
     }
 
-    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) :
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         val type: TextView = itemView.findViewById(R.id.item_estate_type)
         val city: TextView = itemView.findViewById(R.id.item_estate_city)
         val price: TextView = itemView.findViewById(R.id.item_estate_price)
@@ -53,4 +71,16 @@ class EstateListAdapter(
             Estate.Type.PENTHOUSE -> resources.getString(R.string.estate_type_penthouse)
         }
     }
+
+    fun updateSelectedEstateColor(selectedEstate: Estate?) {
+        this.lastSelectedEstate = this.selectedEstate
+        this.selectedEstate = selectedEstate
+        if (lastSelectedEstate != null) {
+            notifyItemChanged(currentList.indexOf(lastSelectedEstate))
+        }
+        if (selectedEstate != null) {
+            notifyItemChanged(currentList.indexOf(selectedEstate))
+        }
+    }
+
 }

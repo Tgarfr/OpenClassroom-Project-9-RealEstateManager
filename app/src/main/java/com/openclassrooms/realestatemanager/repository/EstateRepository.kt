@@ -1,10 +1,19 @@
 package com.openclassrooms.realestatemanager.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.openclassrooms.realestatemanager.api.EstateApi
 import com.openclassrooms.realestatemanager.model.Estate
 
-class EstateRepository(private val estateApi: EstateApi) {
+class EstateRepository(estateApi: EstateApi) {
 
-    fun getEstateList(): List<Estate> = estateApi.getEstateList()
+    private val estateListLiveData = MutableLiveData(estateApi.getEstateList())
+    private val selectedEstateLiveData = MutableLiveData<Estate>()
+
+    fun getEstateListLiveData(): LiveData<List<Estate>> = estateListLiveData
+
+    fun getSelectedEstateLiveData(): LiveData<Estate> = selectedEstateLiveData
+
+    fun setSelectedEstateLiveData(estate: Estate) { selectedEstateLiveData.value = estate }
 
 }

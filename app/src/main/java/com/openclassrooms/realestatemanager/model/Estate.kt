@@ -8,15 +8,19 @@ data class Estate(
     val type: Type,
     val price: Double,
     val surface: Float,
-    val numberOfRoom: Int,
+    val numberOfRooms: Int,
+    val numberOfBathrooms: Int,
+    val numberOfBedrooms: Int,
     val description: String,
-    val housseNumber: Int,
+    val houseNumber: Int,
     val street: String,
-    val ZIPCode: String,
+    val zipCode: String,
     val city: String,
+    val country: String,
+    val additionalAddress: String?,
     val status: Int,
     val entryDate: Calendar,
-    var saleDate: Calendar?,
+    val saleDate: Calendar?,
     val agent: String
 ) {
 
