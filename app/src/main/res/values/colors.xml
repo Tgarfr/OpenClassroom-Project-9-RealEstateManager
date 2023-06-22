@@ -7,4 +7,7 @@
     // Estate List
     <color name="estate_list_price">#EE2368</color>
     <color name="estate_list_dividing_bar">#E3E3E3</color>
+    <color name="estate_list_selected_estate">#F72971</color>
+    <color name="estate_list_selected_estate_text">#FFFFFF</color>
+
 </resources>
