@@ -8,14 +8,13 @@ import com.openclassrooms.realestatemanager.repository.EstateRepository
 
 class EstateSheetFragmentViewModel(private val estateRepository: EstateRepository): ViewModel() {
 
-    private var estateListObserver: Observer<List<Estate>>
+    private val estateListObserver: Observer<List<Estate>> = Observer { estateList ->
+        if (estateRepository.getSelectedEstateLiveData().value == null && !estateList.isNullOrEmpty()) {
+            estateRepository.setSelectedEstateLiveData(estateList[0])
+        }
+    }
 
     init {
-        estateListObserver = Observer { estateList ->
-            if (estateRepository.getSelectedEstateLiveData().value == null && estateList != null && estateList.isNotEmpty()) {
-                estateRepository.setSelectedEstateLiveData(estateList[0])
-            }
-        }
         estateRepository.getEstateListLiveData().observeForever(estateListObserver)
     }
 

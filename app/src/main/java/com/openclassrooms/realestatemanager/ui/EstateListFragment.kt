@@ -37,7 +37,7 @@ class EstateListFragment(
         recyclerView.adapter = estateListAdapter
 
         viewModel.getEstateListLiveData().observe(viewLifecycleOwner) { estateList -> estateListAdapter.submitList(estateList)}
-        viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate -> estateListAdapter.updateSelectedEstateColor(estate)}
+        viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate -> estateListAdapter.selectedEstateColor(estate)}
 
         return view
     }

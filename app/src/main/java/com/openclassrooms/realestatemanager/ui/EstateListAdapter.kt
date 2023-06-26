@@ -72,7 +72,7 @@ class EstateListAdapter(
         }
     }
 
-    fun updateSelectedEstateColor(selectedEstate: Estate?) {
+    fun selectedEstateColor(selectedEstate: Estate?) {
         this.lastSelectedEstate = this.selectedEstate
         this.selectedEstate = selectedEstate
         if (lastSelectedEstate != null) {
