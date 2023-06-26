@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.openclassrooms.realestatemanager.R
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentL
             .setReorderingAllowed(false)
             .commit()
 
-        if (resources.getBoolean(R.bool.isLandscapeMode)) {
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportFragmentManager.beginTransaction()
                 .add(R.id.activity_main_fragment_container_right, EstateSheetFragment(), null)
                 .setReorderingAllowed(false)
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentL
     }
 
     override fun launchEstateSheetFragment() {
-        if (resources.getBoolean(R.bool.isLandscapeMode)) {
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_fragment_container_right, EstateSheetFragment::class.java, null)
                 .setReorderingAllowed(false)
