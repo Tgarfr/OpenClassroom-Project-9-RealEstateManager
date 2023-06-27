@@ -11,8 +11,4 @@ class EstateListFragmentViewModel(private val estateRepository: EstateRepository
 
     fun getSelectedEstateLiveData(): LiveData<Estate> = estateRepository.getSelectedEstateLiveData()
 
-    fun setSelectedEstateLiveData(estate: Estate) {
-        estateRepository.setSelectedEstateLiveData(estate)
-    }
-
 }

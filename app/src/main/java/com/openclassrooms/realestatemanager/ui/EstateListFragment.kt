@@ -20,7 +20,7 @@ class EstateListFragment(
     private lateinit var viewModel: EstateListFragmentViewModel
 
     interface EstateListFragmentListener {
-        fun launchEstateSheetFragment()
+        fun launchEstateSheetFragment(estate: Estate)
     }
 
     override fun onCreateView(
@@ -43,8 +43,7 @@ class EstateListFragment(
     }
 
     override fun onEstateItemClick(estate: Estate) {
-        viewModel.setSelectedEstateLiveData(estate)
-        estateListFragmentListener.launchEstateSheetFragment()
+        estateListFragmentListener.launchEstateSheetFragment(estate)
     }
 
 }

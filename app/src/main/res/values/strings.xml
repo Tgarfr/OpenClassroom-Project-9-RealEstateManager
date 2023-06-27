@@ -3,10 +3,13 @@
     <string name="app_name">Real Estate Manager</string>
 
     // Estate
+    <string name="estate_type_not_selected">Select a type</string>
     <string name="estate_type_house">House</string>
     <string name="estate_type_duplex">Duplex</string>
     <string name="estate_type_flat">Flat</string>
     <string name="estate_type_penthouse">Penthouse</string>
+    <string name="estate_status_available">Available</string>
+    <string name="estate_status_sold">Sold</string>
 
     // Estate List
     <string name="estate_list_type">House</string>
@@ -33,5 +36,37 @@
     <string name="sheet_estate_location_icon">Location icon</string>
     <string name="sheet_estate_title_location">Location</string>
     <string name="sheet_estate_location">740 Park Avenue\nApt 6/7A\nNew York\nNY 10021\nUnited States</string>
+    <string name="fragment_sheet_estate_status">Available</string>
+
+    // Estate add
+    <string name="estate_add_estate">Add estate</string>
+    <string name="add_estate_type">Type :</string>
+    <string name="add_estate_price">Price :</string>
+    <string name="add_estate_description">Description :</string>
+    <string name="add_estate_surface">Surface :</string>
+    <string name="add_estate_numbers_of_rooms">Numbers of rooms :</string>
+    <string name="add_estate_numbers_of_bathrooms">Numbers of bathrooms :</string>
+    <string name="add_estate_numbers_of_bedrooms">Numbers of bedrooms :</string>
+    <string name="add_estate_house_number">House number :</string>
+    <string name="add_estate_street">Street :</string>
+    <string name="add_estate_additional_address">Additional address :</string>
+    <string name="add_estate_zipCode">Zip Code :</string>
+    <string name="add_estate_city">City :</string>
+    <string name="add_estate_country">Country :</string>
+    <string name="add_estate_button_add">Add estate</string>
+    <string name="add_estate_location">Location :</string>
+    <string name="add_estate_type_required">Type is required</string>
+    <string name="add_estate_price_required">Price is required</string>
+    <string name="add_estate_description_required">Description is required</string>
+    <string name="add_estate_surface_required">Surface is required</string>
+    <string name="add_estate_numbersOfRooms_required">Number of rooms is required</string>
+    <string name="add_estate_numbersOfBathrooms_required">Number of bathrooms is required</string>
+    <string name="add_estate_numbersOfBedrooms_required">Number of bedrooms is required</string>
+    <string name="add_estate_houseNumber_required">House number is required</string>
+    <string name="add_estate_street_required">Street is required</string>
+    <string name="add_estate_zipCode_required">Zip code is required</string>
+    <string name="add_estate_city_required">City is required</string>
+    <string name="add_estate_country_required">Country is required</string>
+    <string name="add_estate_added">Estate added</string>
 
 </resources>

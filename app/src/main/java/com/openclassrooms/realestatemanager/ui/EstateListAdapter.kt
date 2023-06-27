@@ -27,13 +27,13 @@ class EstateListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_estate, parent, false)
+            .inflate(R.layout.item_estate_list, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val estate = currentList[position]
-        holder.type.text = getEstateTypeString(estate.type)
+        holder.type.text = estate.type.getString(resources)
         holder.city.text = estate.city
         holder.price.text = decimalFormat.format(estate.price)
         holder.itemView.setOnClickListener { estateListAdapterListener.onEstateItemClick(estate) }
@@ -60,15 +60,6 @@ class EstateListAdapter(
         }
         override fun areContentsTheSame(oldItem: Estate, newItem: Estate): Boolean {
             return oldItem == newItem
-        }
-    }
-
-    private fun getEstateTypeString(estateType: Estate.Type): String {
-        return when (estateType) {
-            Estate.Type.FLAT -> resources.getString(R.string.estate_type_flat)
-            Estate.Type.HOUSE -> resources.getString(R.string.estate_type_house)
-            Estate.Type.DUPLEX -> resources.getString(R.string.estate_type_duplex)
-            Estate.Type.PENTHOUSE -> resources.getString(R.string.estate_type_penthouse)
         }
     }
 
