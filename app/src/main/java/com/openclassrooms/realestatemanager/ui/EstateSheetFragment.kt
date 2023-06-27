@@ -20,6 +20,7 @@ class EstateSheetFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_sheet_estate, container, false)
         val viewModel = ViewModelProvider(this, ViewModelFactory)[EstateSheetFragmentViewModel::class.java]
 
+        val statusTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_status)
         val descriptionTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_description)
         val surfaceTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_surface)
         val numbersOfRoomsTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_rooms)
@@ -28,12 +29,15 @@ class EstateSheetFragment : Fragment() {
         val locationTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_location)
 
         viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate ->
-            descriptionTextView.text = estate?.description
-            surfaceTextView.text = estate?.surface.toString()
-            numbersOfRoomsTextView.text = estate?.numberOfRooms.toString()
-            numbersOfBathroomsTextView.text = estate?.numberOfBathrooms.toString()
-            numbersOfBedroomsTextView.text = estate?.numberOfBedrooms.toString()
-            locationTextView.text = viewModel.getLocationString(estate)
+            if (estate != null) {
+                statusTextView.text = estate.status.getString(resources)
+                descriptionTextView.text = estate.description
+                surfaceTextView.text = estate.surface.toString()
+                numbersOfRoomsTextView.text = estate.numberOfRooms.toString()
+                numbersOfBathroomsTextView.text = estate.numberOfBathrooms.toString()
+                numbersOfBedroomsTextView.text = estate.numberOfBedrooms.toString()
+                locationTextView.text = viewModel.getLocationString(estate)
+            }
         }
 
         return view

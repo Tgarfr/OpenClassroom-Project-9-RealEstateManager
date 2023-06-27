@@ -3,9 +3,7 @@ package com.openclassrooms.realestatemanager.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.openclassrooms.realestatemanager.repository.EstateRepository
-import com.openclassrooms.realestatemanager.ui.EstateListFragmentViewModel
-import com.openclassrooms.realestatemanager.ui.EstateSheetFragmentViewModel
-import com.openclassrooms.realestatemanager.ui.MainActivityViewModel
+import com.openclassrooms.realestatemanager.ui.*
 
 object ViewModelFactory: ViewModelProvider.Factory {
 
@@ -14,13 +12,16 @@ object ViewModelFactory: ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)) {
-            return MainActivityViewModel() as T
+            return MainActivityViewModel(estateRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateListFragmentViewModel::class.java)) {
             return EstateListFragmentViewModel(estateRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateSheetFragmentViewModel::class.java)) {
             return EstateSheetFragmentViewModel(estateRepository) as T
+        }
+        if (modelClass.isAssignableFrom(EstateAddFragmentViewModel::class.java)) {
+            return EstateAddFragmentViewModel(estateRepository) as T
         }
         throw java.lang.IllegalArgumentException("Unknown ViewModel Class")
     }

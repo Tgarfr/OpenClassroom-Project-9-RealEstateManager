@@ -2,14 +2,26 @@ package com.openclassrooms.realestatemanager.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.di.ViewModelFactory
+import com.openclassrooms.realestatemanager.model.Estate
 
-class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentListener {
+class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentListener, EstateAddFragment.EstateAddFragmentListener {
+
+    private lateinit var viewModel: MainActivityViewModel
+    private val activity = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        viewModel = ViewModelProvider(this, ViewModelFactory)[MainActivityViewModel::class.java]
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         supportFragmentManager.beginTransaction()
             .add(R.id.activity_main_fragment_container, EstateListFragment(this), null)
@@ -24,19 +36,44 @@ class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentL
         }
     }
 
-    override fun launchEstateSheetFragment() {
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+    override fun launchEstateSheetFragment(estate: Estate) {
+        viewModel.setSelectedEstateLiveData(estate)
+        replaceFragment(EstateSheetFragment())
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_main_add_estate) {
+            replaceFragment(EstateAddFragment(this))
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && fragment !is EstateListFragment) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.activity_main_fragment_container_right, EstateSheetFragment::class.java, null)
+                .replace(R.id.activity_main_fragment_container_right, fragment, null)
                 .setReorderingAllowed(false)
-                .addToBackStack(null)
                 .commit()
         } else {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.activity_main_fragment_container, EstateSheetFragment::class.java, null)
+                .replace(R.id.activity_main_fragment_container, fragment, null)
                 .setReorderingAllowed(false)
-                .addToBackStack(null)
                 .commit()
+        }
+    }
+
+    private val onBackPressedCallback: OnBackPressedCallback = object: OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                replaceFragment(EstateSheetFragment())
+            } else {
+                replaceFragment(EstateListFragment(activity))
+            }
         }
     }
 

@@ -11,7 +11,6 @@ object FakeEstateApi : EstateApi {
         return listOf(
             Estate(
                 id =1,
-                name = "Estate 1",
                 type = Estate.Type.HOUSE,
                 price = 250000.00,
                 surface = 100F,
@@ -25,14 +24,13 @@ object FakeEstateApi : EstateApi {
                 city = "New York",
                 country = "United States",
                 additionalAddress = "Apt 6/7A",
-                status = 1,
+                status = Estate.Status.AVAILABLE,
                 entryDate = Calendar.getInstance(),
                 saleDate = null,
                 agent = "Mr Bob"
             ),
             Estate(
                 id = 3,
-                name = "Estate 3",
                 type = Estate.Type.DUPLEX,
                 price = 1000000.00,
                 surface = 100F,
@@ -46,14 +44,13 @@ object FakeEstateApi : EstateApi {
                 city = "Montauk",
                 country = "United States",
                 additionalAddress = "Apt 6/7A",
-                status = 1,
+                status = Estate.Status.AVAILABLE,
                 entryDate = Calendar.getInstance(),
                 saleDate = null,
                 agent = "Mr Martin"
             ),
             Estate(
                 id = 4,
-                name = "Estate 4",
                 type = Estate.Type.PENTHOUSE,
                 price = 75000.50,
                 surface = 100F,
@@ -67,14 +64,13 @@ object FakeEstateApi : EstateApi {
                 city = "Hampton Bays",
                 country = "United States",
                 additionalAddress = "Apt 6/7A",
-                status = 1,
+                status = Estate.Status.SOLD,
                 entryDate = Calendar.getInstance(),
                 saleDate = null,
                 agent = "Mr Bob"
             ),
             Estate(
                 id = 5,
-                name = "Estate 5",
                 type = Estate.Type.FLAT,
                 price = 150000.30,
                 surface = 100F,
@@ -88,7 +84,7 @@ object FakeEstateApi : EstateApi {
                 city = "New York",
                 country = "United States",
                 additionalAddress = "Apt 6/7A",
-                status = 1,
+                status = Estate.Status.AVAILABLE,
                 entryDate = Calendar.getInstance(),
                 saleDate = null,
                 agent = "Mr Bob"
