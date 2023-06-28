@@ -23,6 +23,9 @@ object ViewModelFactory: ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(EstateAddFragmentViewModel::class.java)) {
             return EstateAddFragmentViewModel(estateRepository) as T
         }
+        if (modelClass.isAssignableFrom(EstateEditFragmentViewModel::class.java)) {
+            return EstateEditFragmentViewModel(estateRepository) as T
+        }
         throw java.lang.IllegalArgumentException("Unknown ViewModel Class")
     }
 

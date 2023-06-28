@@ -12,7 +12,12 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
 
-class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentListener, EstateAddFragment.EstateAddFragmentListener {
+class MainActivity :
+    AppCompatActivity(),
+    EstateListFragment.EstateListFragmentListener,
+    EstateAddFragment.EstateAddFragmentListener,
+    EstateSheetFragment.EstateSheetFragmentListener,
+    EstateEditFragment.EstateEditFragmentListener{
 
     private lateinit var viewModel: MainActivityViewModel
     private val activity = this
@@ -30,7 +35,7 @@ class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentL
 
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.activity_main_fragment_container_right, EstateSheetFragment(), null)
+                .add(R.id.activity_main_fragment_container_right, EstateSheetFragment(this), null)
                 .setReorderingAllowed(false)
                 .commit()
         }
@@ -38,7 +43,12 @@ class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentL
 
     override fun launchEstateSheetFragment(estate: Estate) {
         viewModel.setSelectedEstateLiveData(estate)
-        replaceFragment(EstateSheetFragment())
+        replaceFragment(EstateSheetFragment(this))
+    }
+
+    override fun launchEstateEditFragment(estate: Estate) {
+        viewModel.setSelectedEstateLiveData(estate)
+        replaceFragment(EstateEditFragment(this))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,7 +80,7 @@ class MainActivity : AppCompatActivity(), EstateListFragment.EstateListFragmentL
     private val onBackPressedCallback: OnBackPressedCallback = object: OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                replaceFragment(EstateSheetFragment())
+                replaceFragment(EstateSheetFragment(activity))
             } else {
                 replaceFragment(EstateListFragment(activity))
             }
