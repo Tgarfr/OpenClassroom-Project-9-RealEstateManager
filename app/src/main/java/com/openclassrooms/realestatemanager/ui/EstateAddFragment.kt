@@ -31,9 +31,9 @@ class EstateAddFragment(private val estateAddFragmentListener: EstateAddFragment
         val priceEditText: EditText = view.findViewById(R.id.fragment_add_estate_price)
         val descriptionEditText: EditText = view.findViewById(R.id.fragment_add_estate_description)
         val surfaceEditText: EditText = view.findViewById(R.id.fragment_add_estate_surface)
-        val numbersOfRoomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_numbers_of_rooms)
-        val numbersOfBathroomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_numbers_of_bathrooms)
-        val numbersOfBedroomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_numbers_of_bedrooms)
+        val numberOfRoomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_number_of_rooms)
+        val numberOfBathroomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_number_of_bathrooms)
+        val numberOfBedroomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_number_of_bedrooms)
         val houseNumberEditText: EditText = view.findViewById(R.id.fragment_add_estate_house_number)
         val streetEditText: EditText = view.findViewById(R.id.fragment_add_estate_street)
         val additionalAddressEditText: EditText = view.findViewById(R.id.fragment_add_estate_additional_address)
@@ -48,14 +48,15 @@ class EstateAddFragment(private val estateAddFragmentListener: EstateAddFragment
 
         val addButton: Button = view.findViewById(R.id.fragment_add_estate_button_add)
         addButton.setOnClickListener {
+            val type = this.type
             when {
                 type == null -> Toast.makeText(activity, resources.getString(R.string.add_estate_type_required), Toast.LENGTH_SHORT).show()
                 priceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_price_required), Toast.LENGTH_SHORT).show()
                 descriptionEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_description_required), Toast.LENGTH_SHORT).show()
                 surfaceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_surface_required), Toast.LENGTH_SHORT).show()
-                numbersOfRoomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numbersOfRooms_required), Toast.LENGTH_SHORT).show()
-                numbersOfBathroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numbersOfBathrooms_required), Toast.LENGTH_SHORT).show()
-                numbersOfBedroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numbersOfBedrooms_required), Toast.LENGTH_SHORT).show()
+                numberOfRoomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numberOfRooms_required), Toast.LENGTH_SHORT).show()
+                numberOfBathroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numberOfBathrooms_required), Toast.LENGTH_SHORT).show()
+                numberOfBedroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numberOfBedrooms_required), Toast.LENGTH_SHORT).show()
                 houseNumberEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_houseNumber_required), Toast.LENGTH_SHORT).show()
                 streetEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_street_required), Toast.LENGTH_SHORT).show()
                 zipCodeEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_zipCode_required), Toast.LENGTH_SHORT).show()
@@ -64,12 +65,12 @@ class EstateAddFragment(private val estateAddFragmentListener: EstateAddFragment
                 else -> {
                     val estate = Estate(
                         id = System.currentTimeMillis(),
-                        type = type!!,
+                        type = type,
                         price = priceEditText.text.toString().toDouble(),
                         surface = surfaceEditText.text.toString().toFloat(),
-                        numberOfRooms = numbersOfRoomsEditText.text.toString().toInt(),
-                        numberOfBathrooms = numbersOfBathroomsEditText.text.toString().toInt(),
-                        numberOfBedrooms = numbersOfBedroomsEditText.text.toString().toInt(),
+                        numberOfRooms = numberOfRoomsEditText.text.toString().toInt(),
+                        numberOfBathrooms = numberOfBathroomsEditText.text.toString().toInt(),
+                        numberOfBedrooms = numberOfBedroomsEditText.text.toString().toInt(),
                         description = descriptionEditText.text.toString(),
                         houseNumber = houseNumberEditText.text.toString().toInt(),
                         street = streetEditText.text.toString(),
@@ -82,8 +83,8 @@ class EstateAddFragment(private val estateAddFragmentListener: EstateAddFragment
                         saleDate = null,
                         agent = "Agent"
                     )
-                    Toast.makeText(activity, resources.getString(R.string.add_estate_added), Toast.LENGTH_LONG).show()
                     viewModel.addEstate(estate)
+                    Toast.makeText(activity, resources.getString(R.string.add_estate_added), Toast.LENGTH_LONG).show()
                     estateAddFragmentListener.launchEstateSheetFragment(estate)
                 }
             }

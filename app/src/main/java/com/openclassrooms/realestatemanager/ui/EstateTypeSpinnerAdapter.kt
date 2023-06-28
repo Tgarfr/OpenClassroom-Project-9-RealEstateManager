@@ -32,8 +32,7 @@ class EstateTypeSpinnerAdapter(
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: View
-        view = convertView ?: LayoutInflater.from(parent?.context).inflate(R.layout.item_type_estate_list, parent, false)
+        val view  = convertView ?: LayoutInflater.from(parent?.context).inflate(R.layout.item_type_estate_list, parent, false)
 
         val estateTypeTextView: TextView = view.findViewById(R.id.spinner_item_type_estate)
         if (position == 0) {

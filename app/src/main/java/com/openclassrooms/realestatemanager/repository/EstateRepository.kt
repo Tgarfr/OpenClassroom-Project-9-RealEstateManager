@@ -13,12 +13,9 @@ class EstateRepository(estateApi: EstateApi) {
     fun getEstateListLiveData(): LiveData<List<Estate>> = estateListLiveData
 
     fun addEstate(estate: Estate) {
-        val estateList: List<Estate>? = estateListLiveData.value
-        if (estateList != null) {
-            val mutableEstateList: MutableList<Estate> = estateList.toMutableList()
-            mutableEstateList.add(estate)
-            estateListLiveData.value = mutableEstateList.toList()
-        }
+        val mutableEstateList: MutableList<Estate> = estateListLiveData.value?.toMutableList() ?: return
+        mutableEstateList.add(estate)
+        estateListLiveData.value = mutableEstateList.toList()
     }
 
     fun getSelectedEstateLiveData(): LiveData<Estate> = selectedEstateLiveData

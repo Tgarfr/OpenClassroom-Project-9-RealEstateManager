@@ -140,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:labelFor="@id/fragment_add_estate_numbers_of_rooms"
+        android:labelFor="@id/fragment_add_estate_number_of_rooms"
         android:padding="6dp"
         android:text="@string/add_estate_numbers_of_rooms"
         android:textSize="18sp"
@@ -149,7 +149,7 @@
         app:layout_constraintTop_toTopOf="@id/fragment_add_estate_icon_numbers_of_rooms" />
 
     <EditText
-        android:id="@+id/fragment_add_estate_numbers_of_rooms"
+        android:id="@+id/fragment_add_estate_number_of_rooms"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -166,11 +166,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:contentDescription="@string/sheet_estate_bathroom_icon"
-        android:labelFor="@id/fragment_add_estate_numbers_of_bathrooms"
+        android:labelFor="@id/fragment_add_estate_number_of_bathrooms"
         android:padding="10dp"
         android:src="@drawable/icon_list_estate_bathroom"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_add_estate_numbers_of_rooms" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_add_estate_number_of_rooms" />
 
     <TextView
         android:id="@+id/fragment_add_estate_title_numbers_of_bathrooms"
@@ -185,7 +185,7 @@
         app:layout_constraintTop_toTopOf="@id/fragment_add_estate_icon_numbers_of_bathrooms" />
 
     <EditText
-        android:id="@+id/fragment_add_estate_numbers_of_bathrooms"
+        android:id="@+id/fragment_add_estate_number_of_bathrooms"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -205,14 +205,14 @@
         android:padding="10dp"
         android:src="@drawable/icon_list_estate_bedroom"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_add_estate_numbers_of_bathrooms" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_add_estate_number_of_bathrooms" />
 
     <TextView
         android:id="@+id/fragment_add_estate_title_numbers_of_bedrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:labelFor="@id/fragment_add_estate_numbers_of_bedrooms"
+        android:labelFor="@id/fragment_add_estate_number_of_bedrooms"
         android:padding="6dp"
         android:text="@string/add_estate_numbers_of_bedrooms"
         android:textSize="18sp"
@@ -221,7 +221,7 @@
         app:layout_constraintTop_toTopOf="@id/fragment_add_estate_icon_numbers_of_bedrooms" />
 
     <EditText
-        android:id="@+id/fragment_add_estate_numbers_of_bedrooms"
+        android:id="@+id/fragment_add_estate_number_of_bedrooms"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
