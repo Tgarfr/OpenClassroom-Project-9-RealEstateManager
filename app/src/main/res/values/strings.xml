@@ -39,7 +39,7 @@
     <string name="fragment_sheet_estate_status">Available</string>
 
     // Estate add
-    <string name="estate_add_estate">Add estate</string>
+    <string name="add_estate">Add estate</string>
     <string name="add_estate_type">Type :</string>
     <string name="add_estate_price">Price :</string>
     <string name="add_estate_description">Description :</string>
@@ -59,9 +59,9 @@
     <string name="add_estate_price_required">Price is required</string>
     <string name="add_estate_description_required">Description is required</string>
     <string name="add_estate_surface_required">Surface is required</string>
-    <string name="add_estate_numbersOfRooms_required">Number of rooms is required</string>
-    <string name="add_estate_numbersOfBathrooms_required">Number of bathrooms is required</string>
-    <string name="add_estate_numbersOfBedrooms_required">Number of bedrooms is required</string>
+    <string name="add_estate_numberOfRooms_required">Number of rooms is required</string>
+    <string name="add_estate_numberOfBathrooms_required">Number of bathrooms is required</string>
+    <string name="add_estate_numberOfBedrooms_required">Number of bedrooms is required</string>
     <string name="add_estate_houseNumber_required">House number is required</string>
     <string name="add_estate_street_required">Street is required</string>
     <string name="add_estate_zipCode_required">Zip code is required</string>
