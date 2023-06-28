@@ -4,6 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/fragment_sheet_estate_edit_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:contentDescription="@string/sheet_estate_edit"
+        android:src="@drawable/icon_edit_estate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
     <TextView
         android:id="@+id/fragment_sheet_estate_title_media"
         android:layout_width="wrap_content"
@@ -25,7 +36,7 @@
         android:textSize="16sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/fragment_sheet_estate_status"/>
+        android:text="@string/sheet_estate_status"/>
 
     <FrameLayout
         android:id="@+id/fragment_sheet_estate_pictures"

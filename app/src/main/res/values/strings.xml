@@ -36,37 +36,42 @@
     <string name="sheet_estate_location_icon">Location icon</string>
     <string name="sheet_estate_title_location">Location</string>
     <string name="sheet_estate_location">740 Park Avenue\nApt 6/7A\nNew York\nNY 10021\nUnited States</string>
-    <string name="fragment_sheet_estate_status">Available</string>
+    <string name="sheet_estate_status">Available</string>
+    <string name="sheet_estate_edit">Edit estate</string>
+
+    // Edit Estate
+    <string name="edit_estate">Edit estate</string>
+    <string name="edit_estate_edited">Estate edited</string>
+    <string name="edit_estate_type">Type :</string>
+    <string name="edit_estate_price">Price :</string>
+    <string name="edit_estate_description">Description :</string>
+    <string name="edit_estate_surface">Surface :</string>
+    <string name="edit_estate_numbers_of_rooms">Numbers of rooms :</string>
+    <string name="edit_estate_numbers_of_bathrooms">Numbers of bathrooms :</string>
+    <string name="edit_estate_numbers_of_bedrooms">Numbers of bedrooms :</string>
+    <string name="edit_estate_house_number">House number :</string>
+    <string name="edit_estate_street">Street :</string>
+    <string name="edit_estate_additional_address">Additional address :</string>
+    <string name="edit_estate_zipCode">Zip Code :</string>
+    <string name="edit_estate_city">City :</string>
+    <string name="edit_estate_country">Country :</string>
+    <string name="edit_estate_button_add">Add estate</string>
+    <string name="edit_estate_location">Location :</string>
+    <string name="edit_estate_type_required">Type is required</string>
+    <string name="edit_estate_price_required">Price is required</string>
+    <string name="edit_estate_description_required">Description is required</string>
+    <string name="edit_estate_surface_required">Surface is required</string>
+    <string name="edit_estate_numberOfRooms_required">Number of rooms is required</string>
+    <string name="edit_estate_numberOfBathrooms_required">Number of bathrooms is required</string>
+    <string name="edit_estate_numberOfBedrooms_required">Number of bedrooms is required</string>
+    <string name="edit_estate_houseNumber_required">House number is required</string>
+    <string name="edit_estate_street_required">Street is required</string>
+    <string name="edit_estate_zipCode_required">Zip code is required</string>
+    <string name="edit_estate_city_required">City is required</string>
+    <string name="edit_estate_country_required">Country is required</string>
 
     // Estate add
     <string name="add_estate">Add estate</string>
-    <string name="add_estate_type">Type :</string>
-    <string name="add_estate_price">Price :</string>
-    <string name="add_estate_description">Description :</string>
-    <string name="add_estate_surface">Surface :</string>
-    <string name="add_estate_numbers_of_rooms">Numbers of rooms :</string>
-    <string name="add_estate_numbers_of_bathrooms">Numbers of bathrooms :</string>
-    <string name="add_estate_numbers_of_bedrooms">Numbers of bedrooms :</string>
-    <string name="add_estate_house_number">House number :</string>
-    <string name="add_estate_street">Street :</string>
-    <string name="add_estate_additional_address">Additional address :</string>
-    <string name="add_estate_zipCode">Zip Code :</string>
-    <string name="add_estate_city">City :</string>
-    <string name="add_estate_country">Country :</string>
-    <string name="add_estate_button_add">Add estate</string>
-    <string name="add_estate_location">Location :</string>
-    <string name="add_estate_type_required">Type is required</string>
-    <string name="add_estate_price_required">Price is required</string>
-    <string name="add_estate_description_required">Description is required</string>
-    <string name="add_estate_surface_required">Surface is required</string>
-    <string name="add_estate_numberOfRooms_required">Number of rooms is required</string>
-    <string name="add_estate_numberOfBathrooms_required">Number of bathrooms is required</string>
-    <string name="add_estate_numberOfBedrooms_required">Number of bedrooms is required</string>
-    <string name="add_estate_houseNumber_required">House number is required</string>
-    <string name="add_estate_street_required">Street is required</string>
-    <string name="add_estate_zipCode_required">Zip code is required</string>
-    <string name="add_estate_city_required">City is required</string>
-    <string name="add_estate_country_required">Country is required</string>
     <string name="add_estate_added">Estate added</string>
 
 </resources>

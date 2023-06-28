@@ -25,43 +25,44 @@ class EstateAddFragment(private val estateAddFragmentListener: EstateAddFragment
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_add_estate, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_edit_estate, container, false)
         val viewModel = ViewModelProvider(this, ViewModelFactory)[EstateAddFragmentViewModel::class.java]
 
-        val priceEditText: EditText = view.findViewById(R.id.fragment_add_estate_price)
-        val descriptionEditText: EditText = view.findViewById(R.id.fragment_add_estate_description)
-        val surfaceEditText: EditText = view.findViewById(R.id.fragment_add_estate_surface)
-        val numberOfRoomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_number_of_rooms)
-        val numberOfBathroomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_number_of_bathrooms)
-        val numberOfBedroomsEditText: EditText = view.findViewById(R.id.fragment_add_estate_number_of_bedrooms)
-        val houseNumberEditText: EditText = view.findViewById(R.id.fragment_add_estate_house_number)
-        val streetEditText: EditText = view.findViewById(R.id.fragment_add_estate_street)
-        val additionalAddressEditText: EditText = view.findViewById(R.id.fragment_add_estate_additional_address)
-        val zipCodeEditText: EditText = view.findViewById(R.id.fragment_add_estate_zipCode)
-        val cityEditText: EditText = view.findViewById(R.id.fragment_add_estate_city)
-        val countryEditText: EditText = view.findViewById(R.id.fragment_add_estate_country)
-        val spinner: Spinner = view.findViewById(R.id.fragment_add_estate_spinner_type)
+        val priceEditText: EditText = view.findViewById(R.id.fragment_edit_estate_price)
+        val descriptionEditText: EditText = view.findViewById(R.id.fragment_edit_estate_description)
+        val surfaceEditText: EditText = view.findViewById(R.id.fragment_edit_estate_surface)
+        val numberOfRoomsEditText: EditText = view.findViewById(R.id.fragment_edit_estate_number_of_rooms)
+        val numberOfBathroomsEditText: EditText = view.findViewById(R.id.fragment_edit_estate_number_of_bathrooms)
+        val numberOfBedroomsEditText: EditText = view.findViewById(R.id.fragment_edit_estate_number_of_bedrooms)
+        val houseNumberEditText: EditText = view.findViewById(R.id.fragment_edit_estate_house_number)
+        val streetEditText: EditText = view.findViewById(R.id.fragment_edit_estate_street)
+        val additionalAddressEditText: EditText = view.findViewById(R.id.fragment_edit_estate_additional_address)
+        val zipCodeEditText: EditText = view.findViewById(R.id.fragment_edit_estate_zipCode)
+        val cityEditText: EditText = view.findViewById(R.id.fragment_edit_estate_city)
+        val countryEditText: EditText = view.findViewById(R.id.fragment_edit_estate_country)
+        val spinner: Spinner = view.findViewById(R.id.fragment_edit_estate_spinner_type)
+        val addButton: Button = view.findViewById(R.id.fragment_edit_estate_button_add)
 
         val adapter = EstateTypeSpinnerAdapter(resources)
         spinner.adapter = adapter
         spinner.onItemSelectedListener = onSelectedType
 
-        val addButton: Button = view.findViewById(R.id.fragment_add_estate_button_add)
+        addButton.text = resources.getString(R.string.add_estate)
         addButton.setOnClickListener {
             val type = this.type
             when {
-                type == null -> Toast.makeText(activity, resources.getString(R.string.add_estate_type_required), Toast.LENGTH_SHORT).show()
-                priceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_price_required), Toast.LENGTH_SHORT).show()
-                descriptionEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_description_required), Toast.LENGTH_SHORT).show()
-                surfaceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_surface_required), Toast.LENGTH_SHORT).show()
-                numberOfRoomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numberOfRooms_required), Toast.LENGTH_SHORT).show()
-                numberOfBathroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numberOfBathrooms_required), Toast.LENGTH_SHORT).show()
-                numberOfBedroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_numberOfBedrooms_required), Toast.LENGTH_SHORT).show()
-                houseNumberEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_houseNumber_required), Toast.LENGTH_SHORT).show()
-                streetEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_street_required), Toast.LENGTH_SHORT).show()
-                zipCodeEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_zipCode_required), Toast.LENGTH_SHORT).show()
-                cityEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_city_required), Toast.LENGTH_SHORT).show()
-                countryEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.add_estate_country_required), Toast.LENGTH_SHORT).show()
+                type == null -> Toast.makeText(activity, resources.getString(R.string.edit_estate_type_required), Toast.LENGTH_SHORT).show()
+                priceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_price_required), Toast.LENGTH_SHORT).show()
+                descriptionEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_description_required), Toast.LENGTH_SHORT).show()
+                surfaceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_surface_required), Toast.LENGTH_SHORT).show()
+                numberOfRoomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfRooms_required), Toast.LENGTH_SHORT).show()
+                numberOfBathroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfBathrooms_required), Toast.LENGTH_SHORT).show()
+                numberOfBedroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfBedrooms_required), Toast.LENGTH_SHORT).show()
+                houseNumberEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_houseNumber_required), Toast.LENGTH_SHORT).show()
+                streetEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_street_required), Toast.LENGTH_SHORT).show()
+                zipCodeEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_zipCode_required), Toast.LENGTH_SHORT).show()
+                cityEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_city_required), Toast.LENGTH_SHORT).show()
+                countryEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_country_required), Toast.LENGTH_SHORT).show()
                 else -> {
                     val estate = Estate(
                         id = System.currentTimeMillis(),
@@ -96,7 +97,7 @@ class EstateAddFragment(private val estateAddFragmentListener: EstateAddFragment
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             type = if (position == 0) { null }
             else {
-                Estate.Type.values()[position]
+                Estate.Type.values()[position - 1]
             }
         }
         override fun onNothingSelected(parent: AdapterView<*>?) {}

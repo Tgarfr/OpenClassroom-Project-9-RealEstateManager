@@ -18,6 +18,20 @@ class EstateRepository(estateApi: EstateApi) {
         estateListLiveData.value = mutableEstateList.toList()
     }
 
+    fun editEstate(editedEstate: Estate) {
+        val estateList: List<Estate> = estateListLiveData.value ?: return
+        val mutableEstateListWithEditedEstate: MutableList<Estate> = mutableListOf()
+        for (estate in estateList) {
+            if (estate.id == editedEstate.id) {
+                mutableEstateListWithEditedEstate.add(editedEstate)
+            } else {
+                mutableEstateListWithEditedEstate.add(estate)
+            }
+        }
+        estateListLiveData.value = mutableEstateListWithEditedEstate.toList()
+        selectedEstateLiveData.value = editedEstate
+    }
+
     fun getSelectedEstateLiveData(): LiveData<Estate> = selectedEstateLiveData
 
     fun setSelectedEstateLiveData(estate: Estate) { selectedEstateLiveData.value = estate }
