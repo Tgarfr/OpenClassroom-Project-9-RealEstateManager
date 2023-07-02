@@ -15,7 +15,6 @@ import com.openclassrooms.realestatemanager.model.Estate
 class MainActivity :
     AppCompatActivity(),
     EstateListFragment.EstateListFragmentListener,
-    EstateAddFragment.EstateAddFragmentListener,
     EstateSheetFragment.EstateSheetFragmentListener,
     EstateEditFragment.EstateEditFragmentListener{
 
@@ -48,7 +47,7 @@ class MainActivity :
 
     override fun launchEstateEditFragment(estate: Estate) {
         viewModel.setSelectedEstateLiveData(estate)
-        replaceFragment(EstateEditFragment(this))
+        replaceFragment(EstateEditFragment(EstateEditFragment.Setting.EDIT, this))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -58,7 +57,7 @@ class MainActivity :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_main_add_estate) {
-            replaceFragment(EstateAddFragment(this))
+            replaceFragment(EstateEditFragment(EstateEditFragment.Setting.ADD,this))
         }
         return super.onOptionsItemSelected(item)
     }

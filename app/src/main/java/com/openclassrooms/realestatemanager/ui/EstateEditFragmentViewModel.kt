@@ -9,6 +9,10 @@ class EstateEditFragmentViewModel(private val estateRepository: EstateRepository
 
     fun getSelectedEstateLiveData(): LiveData<Estate> = estateRepository.getSelectedEstateLiveData()
 
+    fun addEstate(estate: Estate) {
+        estateRepository.addEstate(estate)
+    }
+
     fun editEstate(estate: Estate) {
         estateRepository.editEstate(estate)
     }

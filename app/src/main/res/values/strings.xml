@@ -40,8 +40,10 @@
     <string name="sheet_estate_edit">Edit estate</string>
 
     // Edit Estate
-    <string name="edit_estate">Edit estate</string>
+    <string name="edit_estate_edit">Edit estate</string>
+    <string name="edit_estate_add">Add estate</string>
     <string name="edit_estate_edited">Estate edited</string>
+    <string name="edit_estate_added">Estate added</string>
     <string name="edit_estate_type">Type :</string>
     <string name="edit_estate_price">Price :</string>
     <string name="edit_estate_description">Description :</string>
@@ -69,9 +71,5 @@
     <string name="edit_estate_zipCode_required">Zip code is required</string>
     <string name="edit_estate_city_required">City is required</string>
     <string name="edit_estate_country_required">Country is required</string>
-
-    // Estate add
-    <string name="add_estate">Add estate</string>
-    <string name="add_estate_added">Estate added</string>
 
 </resources>
