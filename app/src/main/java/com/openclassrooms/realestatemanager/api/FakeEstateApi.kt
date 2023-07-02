@@ -1,7 +1,7 @@
 package com.openclassrooms.realestatemanager.api
 
 import com.openclassrooms.realestatemanager.model.Estate
-import java.util.*
+import java.util.Calendar
 
 object FakeEstateApi : EstateApi {
 

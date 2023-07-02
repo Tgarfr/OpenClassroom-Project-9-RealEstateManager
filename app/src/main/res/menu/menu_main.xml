@@ -5,7 +5,7 @@
     <item
         android:id="@+id/menu_main_add_estate"
         android:icon="@drawable/icon_add_estate"
-        android:title="@string/add_estate"
+        android:title="@string/edit_estate_add"
         app:showAsAction="always" />
 
 </menu>

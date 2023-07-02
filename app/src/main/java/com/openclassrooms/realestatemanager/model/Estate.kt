@@ -2,7 +2,7 @@ package com.openclassrooms.realestatemanager.model
 
 import android.content.res.Resources
 import com.openclassrooms.realestatemanager.R
-import java.util.*
+import java.util.Calendar
 
 data class Estate(
     val id: Long,

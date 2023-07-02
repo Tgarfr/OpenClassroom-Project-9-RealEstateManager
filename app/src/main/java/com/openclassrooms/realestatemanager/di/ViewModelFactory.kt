@@ -20,9 +20,6 @@ object ViewModelFactory: ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(EstateSheetFragmentViewModel::class.java)) {
             return EstateSheetFragmentViewModel(estateRepository) as T
         }
-        if (modelClass.isAssignableFrom(EstateAddFragmentViewModel::class.java)) {
-            return EstateAddFragmentViewModel(estateRepository) as T
-        }
         if (modelClass.isAssignableFrom(EstateEditFragmentViewModel::class.java)) {
             return EstateEditFragmentViewModel(estateRepository) as T
         }

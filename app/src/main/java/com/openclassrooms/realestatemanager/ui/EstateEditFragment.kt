@@ -5,16 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
-import java.util.*
+import java.util.Calendar
 
-class EstateEditFragment(private val estateEditFragmentListener: EstateEditFragmentListener) : Fragment() {
+class EstateEditFragment(
+    private val setting: Setting,
+    private val estateEditFragmentListener: EstateEditFragmentListener
+    ) : Fragment() {
 
+    enum class Setting { ADD, EDIT }
     private lateinit var viewModel: EstateEditFragmentViewModel
     private var type: Estate.Type? = null
     private lateinit var spinner: Spinner
@@ -42,16 +50,18 @@ class EstateEditFragment(private val estateEditFragmentListener: EstateEditFragm
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_edit_estate, container, false)
+        viewModel = ViewModelProvider(this, ViewModelFactory)[EstateEditFragmentViewModel::class.java]
         initViews(view)
 
-        viewModel = ViewModelProvider(this, ViewModelFactory)[EstateEditFragmentViewModel::class.java]
-        viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner){ estate -> injectEstateToViews(estate) }
+        if (setting == Setting.EDIT) {
+            viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner){ estate -> injectEstateToViews(estate) }
+        }
 
         val adapter = EstateTypeSpinnerAdapter(resources)
         spinner.adapter = adapter
         spinner.onItemSelectedListener = onSelectedType
 
-        button.setOnClickListener(onButtonClickListener)
+        button.setOnClickListener(clickOnValidButton)
 
         return view
     }
@@ -71,7 +81,11 @@ class EstateEditFragment(private val estateEditFragmentListener: EstateEditFragm
         countryEditText = view.findViewById(R.id.fragment_edit_estate_country)
         spinner = view.findViewById(R.id.fragment_edit_estate_spinner_type)
         button = view.findViewById(R.id.fragment_edit_estate_button_add)
-        button.text = resources.getString(R.string.edit_estate)
+        if (setting == Setting.ADD) {
+            button.text = resources.getString(R.string.edit_estate_add)
+        } else {
+            button.text = resources.getString(R.string.edit_estate_edit)
+        }
     }
 
     private fun injectEstateToViews(estate: Estate) {
@@ -84,51 +98,53 @@ class EstateEditFragment(private val estateEditFragmentListener: EstateEditFragm
         numberOfBedroomsEditText.setText(estate.numberOfBedrooms.toString())
         houseNumberEditText.setText(estate.houseNumber.toString())
         streetEditText.setText(estate.street)
+        additionalAddressEditText.setText(estate.additionalAddress)
         zipCodeEditText.setText(estate.zipCode)
         cityEditText.setText(estate.city)
         countryEditText.setText(estate.country)
     }
 
-    private val onButtonClickListener = OnClickListener {
-        val type = this.type
-        when {
-            type == null -> Toast.makeText(activity, resources.getString(R.string.edit_estate_type_required), Toast.LENGTH_SHORT).show()
-            priceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_price_required), Toast.LENGTH_SHORT).show()
-            descriptionEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_description_required), Toast.LENGTH_SHORT).show()
-            surfaceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_surface_required), Toast.LENGTH_SHORT).show()
-            numberOfRoomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfRooms_required), Toast.LENGTH_SHORT).show()
-            numberOfBathroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfBathrooms_required), Toast.LENGTH_SHORT).show()
-            numberOfBedroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfBedrooms_required), Toast.LENGTH_SHORT).show()
-            houseNumberEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_houseNumber_required), Toast.LENGTH_SHORT).show()
-            streetEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_street_required), Toast.LENGTH_SHORT).show()
-            zipCodeEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_zipCode_required), Toast.LENGTH_SHORT).show()
-            cityEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_city_required), Toast.LENGTH_SHORT).show()
-            countryEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_country_required), Toast.LENGTH_SHORT).show()
-            else -> {
-                val estate = Estate(
-                    id = viewModel.getSelectedEstateLiveData().value?.id ?: return@OnClickListener,
-                    type = type,
-                    price = priceEditText.text.toString().toDouble(),
-                    surface = surfaceEditText.text.toString().toFloat(),
-                    numberOfRooms = numberOfRoomsEditText.text.toString().toInt(),
-                    numberOfBathrooms = numberOfBathroomsEditText.text.toString().toInt(),
-                    numberOfBedrooms = numberOfBedroomsEditText.text.toString().toInt(),
-                    description = descriptionEditText.text.toString(),
-                    houseNumber = houseNumberEditText.text.toString().toInt(),
-                    street = streetEditText.text.toString(),
-                    additionalAddress = additionalAddressEditText.text.toString(),
-                    zipCode = zipCodeEditText.text.toString(),
-                    city =  cityEditText.text.toString(),
-                    country = countryEditText.text.toString(),
-                    status = Estate.Status.AVAILABLE,
-                    entryDate = Calendar.getInstance(),
-                    saleDate = null,
-                    agent = "Agent"
-                )
+    private val clickOnValidButton = OnClickListener {
+
+        if (formIsCompleted()) {
+
+            val id = if (setting == Setting.ADD) {
+                System.currentTimeMillis()
+            } else {
+                viewModel.getSelectedEstateLiveData().value?.id ?: return@OnClickListener
+            }
+
+            val estate = Estate(
+                id = id,
+                type = this.type ?: return@OnClickListener,
+                price = priceEditText.text.toString().toDouble(),
+                surface = surfaceEditText.text.toString().toFloat(),
+                numberOfRooms = numberOfRoomsEditText.text.toString().toInt(),
+                numberOfBathrooms = numberOfBathroomsEditText.text.toString().toInt(),
+                numberOfBedrooms = numberOfBedroomsEditText.text.toString().toInt(),
+                description = descriptionEditText.text.toString(),
+                houseNumber = houseNumberEditText.text.toString().toInt(),
+                street = streetEditText.text.toString(),
+                additionalAddress = additionalAddressEditText.text.toString(),
+                zipCode = zipCodeEditText.text.toString(),
+                city =  cityEditText.text.toString(),
+                country = countryEditText.text.toString(),
+                status = Estate.Status.AVAILABLE,
+                entryDate = Calendar.getInstance(),
+                saleDate = null,
+                agent = "Agent"
+            )
+
+            if (setting == Setting.ADD) {
+                viewModel.addEstate(estate)
+                Toast.makeText(activity, resources.getString(R.string.edit_estate_added), Toast.LENGTH_LONG).show()
+            } else {
                 viewModel.editEstate(estate)
                 Toast.makeText(activity, resources.getString(R.string.edit_estate_edited), Toast.LENGTH_LONG).show()
-                estateEditFragmentListener.launchEstateSheetFragment(estate)
             }
+            viewModel.editEstate(estate)
+
+            estateEditFragmentListener.launchEstateSheetFragment(estate)
         }
     }
 
@@ -140,6 +156,25 @@ class EstateEditFragment(private val estateEditFragmentListener: EstateEditFragm
             }
         }
         override fun onNothingSelected(parent: AdapterView<*>?) {}
+    }
+
+    private fun formIsCompleted(): Boolean {
+        when {
+            this.type == null -> Toast.makeText(activity, resources.getString(R.string.edit_estate_type_required), Toast.LENGTH_SHORT).show()
+            priceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_price_required), Toast.LENGTH_SHORT).show()
+            descriptionEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_description_required), Toast.LENGTH_SHORT).show()
+            surfaceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_surface_required), Toast.LENGTH_SHORT).show()
+            numberOfRoomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfRooms_required), Toast.LENGTH_SHORT).show()
+            numberOfBathroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfBathrooms_required), Toast.LENGTH_SHORT).show()
+            numberOfBedroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfBedrooms_required), Toast.LENGTH_SHORT).show()
+            houseNumberEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_houseNumber_required), Toast.LENGTH_SHORT).show()
+            streetEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_street_required), Toast.LENGTH_SHORT).show()
+            zipCodeEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_zipCode_required), Toast.LENGTH_SHORT).show()
+            cityEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_city_required), Toast.LENGTH_SHORT).show()
+            countryEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_country_required), Toast.LENGTH_SHORT).show()
+            else -> return true
+        }
+        return false
     }
 
 }
