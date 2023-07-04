@@ -29,7 +29,7 @@ class EstateListFragment(
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_list_estate, container, false)
-        viewModel = ViewModelProvider(this, ViewModelFactory)[EstateListFragmentViewModel::class.java]
+        viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[EstateListFragmentViewModel::class.java]
 
         val recyclerView: RecyclerView = view.findViewById(R.id.main_activity_estate_list_recyclerview)
         val estateListAdapter = EstateListAdapter(this, resources)

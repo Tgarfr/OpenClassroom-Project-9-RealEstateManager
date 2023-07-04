@@ -13,8 +13,8 @@ class EstateEditFragmentViewModel(private val estateRepository: EstateRepository
         estateRepository.addEstate(estate)
     }
 
-    fun editEstate(estate: Estate) {
-        estateRepository.editEstate(estate)
+    fun updateEstate(estate: Estate) {
+        estateRepository.updateEstate(estate)
     }
 
 }

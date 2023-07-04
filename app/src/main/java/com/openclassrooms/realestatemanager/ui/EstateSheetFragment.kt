@@ -26,7 +26,7 @@ class EstateSheetFragment(
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_sheet_estate, container, false)
-        val viewModel = ViewModelProvider(this, ViewModelFactory)[EstateSheetFragmentViewModel::class.java]
+        val viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[EstateSheetFragmentViewModel::class.java]
 
         val statusTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_status)
         val descriptionTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_description)
