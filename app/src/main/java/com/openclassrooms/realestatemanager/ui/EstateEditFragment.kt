@@ -50,7 +50,7 @@ class EstateEditFragment(
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_edit_estate, container, false)
-        viewModel = ViewModelProvider(this, ViewModelFactory)[EstateEditFragmentViewModel::class.java]
+        viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[EstateEditFragmentViewModel::class.java]
         initViews(view)
 
         if (setting == Setting.EDIT) {
@@ -130,7 +130,7 @@ class EstateEditFragment(
                 city =  cityEditText.text.toString(),
                 country = countryEditText.text.toString(),
                 status = Estate.Status.AVAILABLE,
-                entryDate = Calendar.getInstance(),
+                entryDate = Calendar.getInstance().timeInMillis,
                 saleDate = null,
                 agent = "Agent"
             )
@@ -139,10 +139,10 @@ class EstateEditFragment(
                 viewModel.addEstate(estate)
                 Toast.makeText(activity, resources.getString(R.string.edit_estate_added), Toast.LENGTH_LONG).show()
             } else {
-                viewModel.editEstate(estate)
+                viewModel.updateEstate(estate)
                 Toast.makeText(activity, resources.getString(R.string.edit_estate_edited), Toast.LENGTH_LONG).show()
             }
-            viewModel.editEstate(estate)
+            viewModel.updateEstate(estate)
 
             estateEditFragmentListener.launchEstateSheetFragment(estate)
         }

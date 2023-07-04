@@ -1,13 +1,24 @@
 package com.openclassrooms.realestatemanager.di
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.ui.*
 
-object ViewModelFactory: ViewModelProvider.Factory {
+class ViewModelFactory private constructor(context: Context): ViewModelProvider.Factory {
 
-    private val estateRepository: EstateRepository = Injection.estateRepository
+    private val estateRepository: EstateRepository = Injection.getInstance(context).estateRepository
+
+    companion object {
+        @Volatile
+        private var INSTANCE: ViewModelFactory? = null
+
+        fun getInstance(context: Context): ViewModelProvider.Factory =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: ViewModelFactory(context).also { INSTANCE = it }
+            }
+    }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -4,6 +4,10 @@ import com.openclassrooms.realestatemanager.model.Estate
 
 interface EstateApi {
 
-    fun getEstateList(): List<Estate>
+    suspend fun getEstateList(): List<Estate>
+
+    suspend fun addEstate(estate: Estate)
+
+    suspend fun updateEstate(estate: Estate)
 
 }

@@ -1,11 +1,13 @@
 package com.openclassrooms.realestatemanager.model
 
 import android.content.res.Resources
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.openclassrooms.realestatemanager.R
-import java.util.Calendar
 
+@Entity
 data class Estate(
-    val id: Long,
+    @PrimaryKey val id: Long,
     val type: Type,
     val price: Double,
     val surface: Float,
@@ -20,8 +22,8 @@ data class Estate(
     val city: String,
     val country: String,
     val status: Status,
-    val entryDate: Calendar,
-    val saleDate: Calendar?,
+    val entryDate: Long,
+    val saleDate: Long?,
     val agent: String
 ) {
 
