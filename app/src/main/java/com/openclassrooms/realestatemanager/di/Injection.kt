@@ -1,14 +1,31 @@
 package com.openclassrooms.realestatemanager.di
 
 import android.content.Context
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.openclassrooms.realestatemanager.api.Database
+import com.openclassrooms.realestatemanager.api.FakeEstateApi
 import com.openclassrooms.realestatemanager.repository.EstateRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class Injection private constructor(context: Context) {
 
-    private val database by lazy { Database.getInstance(context) }
+    private val database: Database by lazy {
+        Room.databaseBuilder(
+            context.applicationContext,
+            Database::class.java,
+            Database.DATABASE_NAME
+        )
+            .addCallback(prepopulateDatabase)
+            .build()
+    }
+
     private val estateApi by lazy { database.estateDao() }
+    val estateRepository by lazy { EstateRepository(estateApi) }
 
     companion object {
         @Volatile
@@ -20,6 +37,13 @@ class Injection private constructor(context: Context) {
             }
     }
 
-    val estateRepository by lazy { EstateRepository.getInstance(estateApi) }
+    private val prepopulateDatabase = object : RoomDatabase.Callback() {
+        override fun  onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+            CoroutineScope(Dispatchers.IO).launch {
+                database.estateDao().addEstateList(FakeEstateApi.getEstateList())
+            }
+        }
+    }
 
 }

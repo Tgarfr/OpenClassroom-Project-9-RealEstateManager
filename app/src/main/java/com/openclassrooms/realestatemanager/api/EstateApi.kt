@@ -1,13 +1,14 @@
 package com.openclassrooms.realestatemanager.api
 
 import com.openclassrooms.realestatemanager.model.Estate
+import kotlinx.coroutines.flow.Flow
 
 interface EstateApi {
 
-    suspend fun getEstateList(): List<Estate>
+    fun getEstateListFlow(): Flow<List<Estate>>
 
-    suspend fun addEstate(estate: Estate)
+    fun addEstate(estate: Estate)
 
-    suspend fun updateEstate(estate: Estate)
+    fun updateEstate(estate: Estate)
 
 }
