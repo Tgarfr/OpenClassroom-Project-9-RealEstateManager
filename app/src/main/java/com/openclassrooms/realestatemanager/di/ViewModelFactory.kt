@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.openclassrooms.realestatemanager.repository.EstateRepository
+import com.openclassrooms.realestatemanager.repository.PictureRepository
 import com.openclassrooms.realestatemanager.ui.*
 
 class ViewModelFactory private constructor(context: Context): ViewModelProvider.Factory {
 
     private val estateRepository: EstateRepository = Injection.getInstance(context).estateRepository
+    private val pictureRepository: PictureRepository = Injection.getInstance(context).pictureRepository
 
     companion object {
         @Volatile
@@ -29,10 +31,13 @@ class ViewModelFactory private constructor(context: Context): ViewModelProvider.
             return EstateListFragmentViewModel(estateRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateSheetFragmentViewModel::class.java)) {
-            return EstateSheetFragmentViewModel(estateRepository) as T
+            return EstateSheetFragmentViewModel(estateRepository, pictureRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateEditFragmentViewModel::class.java)) {
-            return EstateEditFragmentViewModel(estateRepository) as T
+            return EstateEditFragmentViewModel(estateRepository, pictureRepository) as T
+        }
+        if (modelClass.isAssignableFrom(PictureActivityViewModel::class.java)) {
+            return PictureActivityViewModel(pictureRepository) as T
         }
         throw java.lang.IllegalArgumentException("Unknown ViewModel Class")
     }

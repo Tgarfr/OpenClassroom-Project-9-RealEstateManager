@@ -4,12 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.openclassrooms.realestatemanager.model.Estate
+import com.openclassrooms.realestatemanager.model.Picture
 import com.openclassrooms.realestatemanager.repository.EstateRepository
+import com.openclassrooms.realestatemanager.repository.PictureRepository
 
-class EstateSheetFragmentViewModel(private val estateRepository: EstateRepository): ViewModel() {
+class EstateSheetFragmentViewModel(
+    private val estateRepository: EstateRepository,
+    private val pictureRepository: PictureRepository
+    ): ViewModel() {
 
     private val estateListObserver: Observer<List<Estate>> = Observer { estateList ->
-        if (estateRepository.getSelectedEstateLiveData().value == null && !estateList.isNullOrEmpty()) {
+        if (estateRepository.getSelectedEstateLiveData().value == null && estateList.isNotEmpty()) {
             estateRepository.setSelectedEstateLiveData(estateList[0])
         }
     }
@@ -24,6 +29,9 @@ class EstateSheetFragmentViewModel(private val estateRepository: EstateRepositor
     }
 
     fun getSelectedEstateLiveData(): LiveData<Estate> = estateRepository.getSelectedEstateLiveData()
+
+    fun getPictureListLiveData(estateId: Long): LiveData<List<Picture>> =
+        pictureRepository.getPictureListByEstateIdLiveData(estateId)
 
     fun getLocationString(estate: Estate?): String {
         if (estate != null) {

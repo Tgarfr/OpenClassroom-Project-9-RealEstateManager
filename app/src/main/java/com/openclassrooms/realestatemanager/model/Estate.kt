@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.openclassrooms.realestatemanager.R
 
-@Entity
+@Entity(tableName = Estate.ROOM_TABLE_NAME)
 data class Estate(
     @PrimaryKey val id: Long,
     val type: Type,
@@ -26,6 +26,10 @@ data class Estate(
     val saleDate: Long?,
     val agent: String
 ) {
+
+    companion object {
+        const val ROOM_TABLE_NAME : String = "estate"
+    }
 
     enum class Type(private val type: Int) {
 

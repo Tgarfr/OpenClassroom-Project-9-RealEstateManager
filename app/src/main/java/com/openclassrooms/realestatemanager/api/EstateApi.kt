@@ -7,8 +7,8 @@ interface EstateApi {
 
     fun getEstateListFlow(): Flow<List<Estate>>
 
-    fun addEstate(estate: Estate)
+    fun addEstate(estate: Estate): Long
 
-    fun updateEstate(estate: Estate)
+    fun updateEstate(estate: Estate): Int
 
 }
