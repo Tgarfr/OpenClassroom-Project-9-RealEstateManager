@@ -38,10 +38,12 @@
     <string name="sheet_estate_location">740 Park Avenue\nApt 6/7A\nNew York\nNY 10021\nUnited States</string>
     <string name="sheet_estate_status">Available</string>
     <string name="sheet_estate_edit">Edit estate</string>
+    <string name="sheet_estate_picture">Estate picture</string>
 
     // Edit Estate
     <string name="edit_estate_edit">Edit estate</string>
     <string name="edit_estate_add">Add estate</string>
+    <string name="edit_estate_add_picture">Add picture</string>
     <string name="edit_estate_edited">Estate edited</string>
     <string name="edit_estate_added">Estate added</string>
     <string name="edit_estate_type">Type :</string>
@@ -60,6 +62,7 @@
     <string name="edit_estate_button_add">Add estate</string>
     <string name="edit_estate_location">Location :</string>
     <string name="edit_estate_type_required">Type is required</string>
+    <string name="edit_estate_picture_required">Picture is required</string>
     <string name="edit_estate_price_required">Price is required</string>
     <string name="edit_estate_description_required">Description is required</string>
     <string name="edit_estate_surface_required">Surface is required</string>
@@ -71,5 +74,16 @@
     <string name="edit_estate_zipCode_required">Zip code is required</string>
     <string name="edit_estate_city_required">City is required</string>
     <string name="edit_estate_country_required">Country is required</string>
+
+    // Picture
+    <string name="picture">Picture</string>
+    <string name="picture_added">Picture Added</string>
+    <string name="picture_to_left">To left picture</string>
+    <string name="picture_to_Right">To Right picture</string>
+    <string name="picture_delete">Delete picture</string>
+    <string name="picture_description">Picture description</string>
+    <string name="picture_description_write">Write a description</string>
+    <string name="picture_description_required">Description is required</string>
+    <string name="picture_button_ok">OK</string>
 
 </resources>

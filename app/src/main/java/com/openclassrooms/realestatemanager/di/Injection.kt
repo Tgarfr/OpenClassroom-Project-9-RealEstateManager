@@ -6,7 +6,9 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.openclassrooms.realestatemanager.api.Database
 import com.openclassrooms.realestatemanager.api.FakeEstateApi
+import com.openclassrooms.realestatemanager.api.PictureStorage
 import com.openclassrooms.realestatemanager.repository.EstateRepository
+import com.openclassrooms.realestatemanager.repository.PictureRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +27,11 @@ class Injection private constructor(context: Context) {
     }
 
     private val estateApi by lazy { database.estateDao() }
+    private val pictureDatabaseApi by lazy { database.pictureDao() }
+    private val pictureStorageApi by lazy { PictureStorage(context) }
+
     val estateRepository by lazy { EstateRepository(estateApi) }
+    val pictureRepository by lazy { PictureRepository(pictureDatabaseApi, pictureStorageApi) }
 
     companion object {
         @Volatile

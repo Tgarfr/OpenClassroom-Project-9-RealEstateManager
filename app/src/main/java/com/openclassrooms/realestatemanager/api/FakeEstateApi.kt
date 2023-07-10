@@ -12,16 +12,18 @@ class FakeEstateApi : EstateApi {
 
     override fun getEstateListFlow() = estateListFlow
 
-    override fun addEstate(estate: Estate) {
+    override fun addEstate(estate: Estate): Long {
         mutableEstateList.add(estate)
         estateListFlow.value = mutableEstateList.toList()
+        return estate.id
     }
 
-    override fun updateEstate(estate: Estate) {
+    override fun updateEstate(estate: Estate): Int {
         mutableEstateList = mutableEstateList.map {
             if (it.id == estate.id) estate else it
         }.toMutableList()
         estateListFlow.value = mutableEstateList.toList()
+        return 1
     }
 
     companion object {

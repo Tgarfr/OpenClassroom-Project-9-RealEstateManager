@@ -5,9 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.openclassrooms.realestatemanager.api.EstateApi
 import com.openclassrooms.realestatemanager.model.Estate
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class EstateRepository(private val estateApi: EstateApi) {
 
@@ -16,16 +13,12 @@ class EstateRepository(private val estateApi: EstateApi) {
 
     fun getEstateListLiveData(): LiveData<List<Estate>> = estateListLiveData
 
-    fun addEstate(estate: Estate) {
-        CoroutineScope(Dispatchers.IO).launch {
-            estateApi.addEstate(estate)
-        }
+    fun addEstate(estate: Estate): Long {
+        return estateApi.addEstate(estate)
     }
 
-    fun updateEstate(estate: Estate) {
-        CoroutineScope(Dispatchers.IO).launch {
-            estateApi.updateEstate(estate)
-        }
+    fun updateEstate(estate: Estate): Int {
+        return estateApi.updateEstate(estate)
     }
 
     fun getSelectedEstateLiveData(): LiveData<Estate> = selectedEstateLiveData
