@@ -21,17 +21,13 @@ class PictureRepository (
 
     fun getPictureListByEstateIdLiveData(estateId: Long): LiveData<List<Picture>> =
         pictureListLiveData.map {
-                initialPictureList -> initialPictureList.let {
-                    notNullPictureList -> notNullPictureList.filter {
+                initialPictureList -> initialPictureList.filter {
                         picture -> picture.estateId == estateId }
         }
-    }
 
     fun addPictureList(pictureList: List<Picture>) {
         CoroutineScope(Dispatchers.IO).launch {
-            for (picture in pictureList) {
-                addPicture(Picture(picture.id, picture.estateId, picture.getUri(), picture.description))
-            }
+            pictureList.forEach { picture -> addPicture(picture) }
         }
     }
 
