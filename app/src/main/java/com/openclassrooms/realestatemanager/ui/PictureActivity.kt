@@ -71,13 +71,13 @@ class PictureActivity: AppCompatActivity() {
     private fun updateButtons() {
         val notMutablePictureList = this.pictureList
         if (!notMutablePictureList.isNullOrEmpty()) {
-            when (picture.id) {
-                notMutablePictureList[0].id -> {
+            when (notMutablePictureList.indexOf(picture)) {
+                0 -> {
                     leftButton.isGone = true
                     rightButton.isGone = false
                     rightButton.setOnClickListener { updatePicture(notMutablePictureList[notMutablePictureList.indexOf(picture) + 1]) }
                 }
-                notMutablePictureList[notMutablePictureList.size - 1].id -> {
+                1 -> {
                     leftButton.isGone = false
                     rightButton.isGone = true
                     leftButton.setOnClickListener { updatePicture(notMutablePictureList[notMutablePictureList.indexOf(picture) - 1]) }
