@@ -1,11 +1,13 @@
 package com.openclassrooms.realestatemanager.ui
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.openclassrooms.realestatemanager.R
@@ -56,8 +58,12 @@ class MainActivity :
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_main_add_estate) {
-            replaceFragment(EstateEditFragment(EstateEditFragment.Setting.ADD,this))
+        when (item.itemId) {
+            R.id.menu_main_add_estate -> replaceFragment(EstateEditFragment(EstateEditFragment.Setting.ADD,this))
+            R.id.menu_main_loan_simulator -> {
+                val intent = Intent(this, LoanSimulatorActivity::class.java)
+                ActivityCompat.startActivity(this, intent, null)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

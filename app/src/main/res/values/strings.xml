@@ -86,4 +86,17 @@
     <string name="picture_description_required">Description is required</string>
     <string name="picture_button_ok">OK</string>
 
+    // Loan simulator
+    <string name="loan_simulator">Loan simulator</string>
+    <string name="loan_simulator_title">Loan simulator :</string>
+    <string name="loan_simulator_amount">Amount : </string>
+    <string name="loan_simulator_years">Years : </string>
+    <string name="loan_simulator_rate">Rate (%) : </string>
+    <string name="loan_simulator_bring">Bring : </string>
+    <string name="loan_simulator_results">Results : </string>
+    <string name="loan_simulator_monthly_payment">Monthly payment :</string>
+    <string name="loan_simulator_total_interests">Total interests :</string>
+    <string name="loan_simulator_total_payment">Total payment :</string>
+    <string name="loan_simulator_calculate">Calculate</string>
+
 </resources>

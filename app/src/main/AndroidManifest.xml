@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.PictureActivity"/>
+        <activity android:name=".ui.LoanSimulatorActivity"/>
     </application>
 
 </manifest>
