@@ -43,6 +43,9 @@ class EstateEditFragment(
     private lateinit var numberOfRoomsEditText: EditText
     private lateinit var numberOfBathroomsEditText: EditText
     private lateinit var numberOfBedroomsEditText: EditText
+    private lateinit var schoolDistanceEditText: EditText
+    private lateinit var shopDistanceEditText: EditText
+    private lateinit var parkDistanceEditText: EditText
     private lateinit var houseNumberEditText: EditText
     private lateinit var streetEditText: EditText
     private lateinit var additionalAddressEditText: EditText
@@ -74,6 +77,9 @@ class EstateEditFragment(
         numberOfRoomsEditText = view.findViewById(R.id.fragment_edit_estate_number_of_rooms)
         numberOfBathroomsEditText = view.findViewById(R.id.fragment_edit_estate_number_of_bathrooms)
         numberOfBedroomsEditText = view.findViewById(R.id.fragment_edit_estate_number_of_bedrooms)
+        schoolDistanceEditText = view.findViewById(R.id.fragment_sheet_estate_distance_school)
+        shopDistanceEditText = view.findViewById(R.id.fragment_sheet_estate_distance_shop)
+        parkDistanceEditText = view.findViewById(R.id.fragment_sheet_estate_distance_park)
         houseNumberEditText = view.findViewById(R.id.fragment_edit_estate_house_number)
         streetEditText = view.findViewById(R.id.fragment_edit_estate_street)
         additionalAddressEditText = view.findViewById(R.id.fragment_edit_estate_additional_address)
@@ -138,6 +144,9 @@ class EstateEditFragment(
         numberOfRoomsEditText.setText(estate.numberOfRooms.toString())
         numberOfBathroomsEditText.setText(estate.numberOfBathrooms.toString())
         numberOfBedroomsEditText.setText(estate.numberOfBedrooms.toString())
+        schoolDistanceEditText.setText(estate.schoolDistance.toString())
+        shopDistanceEditText.setText(estate.shopDistance.toString())
+        parkDistanceEditText.setText(estate.parkDistance.toString())
         houseNumberEditText.setText(estate.houseNumber.toString())
         streetEditText.setText(estate.street)
         additionalAddressEditText.setText(estate.additionalAddress)
@@ -160,11 +169,14 @@ class EstateEditFragment(
                 id = this.id ?: return@OnClickListener,
                 type = this.type ?: return@OnClickListener,
                 price = priceEditText.text.toString().toDouble(),
+                description = descriptionEditText.text.toString(),
                 surface = surfaceEditText.text.toString().toFloat(),
                 numberOfRooms = numberOfRoomsEditText.text.toString().toInt(),
                 numberOfBathrooms = numberOfBathroomsEditText.text.toString().toInt(),
                 numberOfBedrooms = numberOfBedroomsEditText.text.toString().toInt(),
-                description = descriptionEditText.text.toString(),
+                schoolDistance = schoolDistanceEditText.text.toString().toInt(),
+                shopDistance = shopDistanceEditText.text.toString().toInt(),
+                parkDistance = parkDistanceEditText.text.toString().toInt(),
                 houseNumber = houseNumber,
                 street = street,
                 additionalAddress = additionalAddressEditText.text.toString(),
@@ -204,6 +216,9 @@ class EstateEditFragment(
             numberOfRoomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfRooms_required), Toast.LENGTH_SHORT).show()
             numberOfBathroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfBathrooms_required), Toast.LENGTH_SHORT).show()
             numberOfBedroomsEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_numberOfBedrooms_required), Toast.LENGTH_SHORT).show()
+            schoolDistanceEditText.text.toString().isEmpty() -> Toast.makeText(activity, "School distance is empty", Toast.LENGTH_SHORT).show()
+            shopDistanceEditText.text.toString().isEmpty() -> Toast.makeText(activity, "Shop distance is empty", Toast.LENGTH_SHORT).show()
+            parkDistanceEditText.text.toString().isEmpty() -> Toast.makeText(activity, "Park distance is empty", Toast.LENGTH_SHORT).show()
             houseNumberEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_houseNumber_required), Toast.LENGTH_SHORT).show()
             streetEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_street_required), Toast.LENGTH_SHORT).show()
             zipCodeEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_zipCode_required), Toast.LENGTH_SHORT).show()

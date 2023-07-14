@@ -26,6 +26,9 @@ data class Estate(
     val status: Status,
     val entryDate: Long,
     val saleDate: Long?,
+    val schoolDistance: Int,
+    val shopDistance: Int,
+    val parkDistance: Int,
     val agent: String
 ) {
 

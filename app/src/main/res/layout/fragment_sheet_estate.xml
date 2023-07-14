@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_edit_button"
         android:layout_width="45dp"
         android:layout_height="45dp"
@@ -17,19 +18,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_media"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:padding="10dp"
         android:text="@string/sheet_estate_title_media"
-        android:textSize="20sp"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,6 @@
         android:id="@+id/fragment_sheet_estate_pictures_recyclerview"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toTopOf="@id/fragment_sheet_estate_title_description"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -51,199 +50,288 @@
         tools:listitem="@layout/item_picture_estate"
         tools:orientation="horizontal" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:padding="10dp"
         android:text="@string/sheet_estate_title_description"
-        android:textSize="20sp"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_pictures_recyclerview" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/sheet_estate_description"
-        android:textSize="12sp"
+        tools:text="@string/sheet_estate_description"
+        style="@style/TextAppearance.Material3.BodySmall"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_description" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:contentDescription="@string/sheet_estate_surface_icon"
+        android:contentDescription="@string/sheet_estate_title_surface"
         android:padding="5dp"
-        android:src="@drawable/icon_list_estate_surface"
+        android:src="@drawable/icon_estate_surface"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_description" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:padding="2dp"
         android:text="@string/sheet_estate_title_surface"
-        android:textSize="15sp"
+        style="@style/TextAppearance.Material3.TitleSmall"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_surface"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_surface" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="@string/sheet_estate_surface"
-        android:textSize="15sp"
+        style="@style/TextAppearance.Material3.BodyMedium"
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_surface"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_surface" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_numbers_of_rooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:contentDescription="@string/sheet_estate_room_icon"
+        android:contentDescription="@string/sheet_estate_title_number_of_rooms"
         android:padding="5dp"
-        android:src="@drawable/icon_list_estate_room"
+        android:src="@drawable/icon_estate_room"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_surface" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_numbers_of_rooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:padding="2dp"
         android:text="@string/sheet_estate_title_number_of_rooms"
-        android:textSize="15sp"
+        style="@style/TextAppearance.Material3.TitleSmall"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_numbers_of_rooms"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_numbers_of_rooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_numbers_of_rooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="@string/sheet_estate_numbers_of_rooms"
-        android:textSize="15sp"
+        tools:text="@string/sheet_estate_numbers_of_rooms"
+        style="@style/TextAppearance.Material3.BodyMedium"
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_numbers_of_rooms"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_numbers_of_rooms" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_numbers_of_bathrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:contentDescription="@string/sheet_estate_bathroom_icon"
+        android:contentDescription="@string/sheet_estate_title_numbers_of_bathrooms"
         android:padding="5dp"
-        android:src="@drawable/icon_list_estate_bathroom"
+        android:src="@drawable/icon_estate_bathroom"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_numbers_of_rooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_numbers_of_bathrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:padding="2dp"
         android:text="@string/sheet_estate_title_numbers_of_bathrooms"
-        android:textSize="15sp"
+        style="@style/TextAppearance.Material3.TitleSmall"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_numbers_of_bathrooms"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_numbers_of_bathrooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_numbers_of_bathrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="@string/sheet_estate_numbers_of_bathrooms"
-        android:textSize="15sp"
+        tools:text="@string/sheet_estate_numbers_of_bathrooms"
+        style="@style/TextAppearance.Material3.BodyMedium"
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_numbers_of_bathrooms"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_numbers_of_bathrooms" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_numbers_of_bedrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:contentDescription="@string/sheet_estate_bedroom_icon"
+        android:contentDescription="@string/sheet_estate_title_numbers_of_bedrooms"
         android:padding="5dp"
-        android:src="@drawable/icon_list_estate_bedroom"
+        android:src="@drawable/icon_estate_bedroom"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_numbers_of_bathrooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_numbers_of_bedrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:padding="2dp"
         android:text="@string/sheet_estate_title_numbers_of_bedrooms"
-        android:textSize="15sp"
+        style="@style/TextAppearance.Material3.TitleSmall"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_numbers_of_bedrooms"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_numbers_of_bedrooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_numbers_of_bedrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="@string/sheet_estate_numbers_of_bedrooms"
-        android:textSize="15sp"
+        tools:text="@string/sheet_estate_numbers_of_bedrooms"
+        style="@style/TextAppearance.Material3.BodyMedium"
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_numbers_of_bedrooms"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_numbers_of_bedrooms" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:contentDescription="@string/sheet_estate_location_icon"
+        android:contentDescription="@string/sheet_estate_title_location"
         android:padding="5dp"
-        android:src="@drawable/icon_list_estate_location"
+        android:src="@drawable/icon_estate_location"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_numbers_of_bedrooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:padding="2dp"
         android:text="@string/sheet_estate_title_location"
-        android:textSize="15sp"
+        style="@style/TextAppearance.Material3.TitleSmall"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_location"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_location" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_location"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="@string/sheet_estate_location"
-        android:textSize="15sp"
+        tools:text="@string/sheet_estate_location"
+        style="@style/TextAppearance.Material3.BodyMedium"
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_location"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_location" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_sheet_estate_icon_distance_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/sheet_estate_distance_school"
+        android:layout_marginStart="2dp"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_school"
+        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_title_numbers_of_bathrooms"
+        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_surface" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_sheet_estate_title_distance_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:padding="2dp"
+        android:text="@string/sheet_estate_distance_school"
+        style="@style/TextAppearance.Material3.TitleSmall"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_school"
+        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_school" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_sheet_estate_distance_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        tools:text="@string/sheet_estate_distance_example"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_school"
+        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_school" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_sheet_estate_icon_distance_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/sheet_estate_distance_shop"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_shop"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_distance_school"
+        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_distance_school" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_sheet_estate_title_distance_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:padding="2dp"
+        android:text="@string/sheet_estate_distance_shop"
+        style="@style/TextAppearance.Material3.TitleSmall"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_shop"
+        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_shop" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_sheet_estate_distance_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        tools:text="@string/sheet_estate_distance_example"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_shop"
+        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_shop" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_sheet_estate_icon_distance_park"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/sheet_estate_distance_parc"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_parc"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_distance_school"
+        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_distance_shop" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_sheet_estate_title_distance_park"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:padding="2dp"
+        android:text="@string/sheet_estate_distance_parc"
+        style="@style/TextAppearance.Material3.TitleSmall"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_park"
+        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_park" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_sheet_estate_distance_park"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        tools:text="@string/sheet_estate_distance_example"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_park"
+        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_park" />
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/fragment_sheet_estate_map"
