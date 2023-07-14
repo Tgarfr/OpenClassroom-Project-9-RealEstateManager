@@ -18,7 +18,8 @@ class MainActivity :
     AppCompatActivity(),
     EstateListFragment.EstateListFragmentListener,
     EstateSheetFragment.EstateSheetFragmentListener,
-    EstateEditFragment.EstateEditFragmentListener{
+    EstateEditFragment.EstateEditFragmentListener,
+    MapFragment.MapFragmentListener {
 
     private lateinit var viewModel: MainActivityViewModel
     private val activity = this
@@ -64,6 +65,7 @@ class MainActivity :
                 val intent = Intent(this, LoanSimulatorActivity::class.java)
                 ActivityCompat.startActivity(this, intent, null)
             }
+            R.id.menu_main_map -> replaceFragment(MapFragment(this))
         }
         return super.onOptionsItemSelected(item)
     }

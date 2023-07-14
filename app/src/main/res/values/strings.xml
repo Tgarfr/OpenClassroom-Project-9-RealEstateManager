@@ -99,4 +99,10 @@
     <string name="loan_simulator_total_payment">Total payment :</string>
     <string name="loan_simulator_calculate">Calculate</string>
 
+    // Map
+    <string name="map">Map</string>
+    <string name="map_center">Map center</string>
+    <string name="map_position_estate">Estate position</string>
+    <string name="map_position_agent">Agent position</string>
+
 </resources>

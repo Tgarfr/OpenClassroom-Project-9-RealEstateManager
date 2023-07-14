@@ -42,6 +42,9 @@ class ViewModelFactory private constructor(context: Context): ViewModelProvider.
         if (modelClass.isAssignableFrom(LoanSimulatorActivityViewModel::class.java)) {
             return LoanSimulatorActivityViewModel() as T
         }
+        if (modelClass.isAssignableFrom(MapFragmentViewModel::class.java)) {
+            return MapFragmentViewModel(estateRepository) as T
+        }
         throw java.lang.IllegalArgumentException("Unknown ViewModel Class")
     }
 
