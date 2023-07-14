@@ -55,7 +55,7 @@ class LoanSimulatorActivity: AppCompatActivity() {
                     bring = bringText.toDouble()
                 }
 
-                viewModel.calculateTotalCoast(years, amount, rate, bring).toString()
+                viewModel.calculate(years, amount, rate, bring).toString()
             }
         }
 

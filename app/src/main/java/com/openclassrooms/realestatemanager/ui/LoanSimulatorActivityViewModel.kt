@@ -6,9 +6,9 @@ import kotlin.math.pow
 
 class LoanSimulatorActivityViewModel: ViewModel() {
 
-    private var monthlyPaymentLiveData: MutableLiveData<Double> = MutableLiveData(0.0)
-    private var totalInterestsLiveData: MutableLiveData<Double> = MutableLiveData(0.0)
-    private var totalPayment: MutableLiveData<Double> = MutableLiveData(0.0)
+    private val monthlyPaymentLiveData: MutableLiveData<Double> = MutableLiveData(0.0)
+    private val totalInterestsLiveData: MutableLiveData<Double> = MutableLiveData(0.0)
+    private val totalPayment: MutableLiveData<Double> = MutableLiveData(0.0)
 
     fun getMonthlyPaymentLiveData() = monthlyPaymentLiveData
 
@@ -16,7 +16,7 @@ class LoanSimulatorActivityViewModel: ViewModel() {
 
     fun getTotalPaymentLiveData() = totalPayment
 
-    fun calculateTotalCoast(years: Int, amount: Double, rate: Double, bring: Double ) {
+    fun calculate(years: Int, amount: Double, rate: Double, bring: Double ) {
 
         val amountBorrowed = amount - bring
         val numberOfMonthlyPayments = years * 12
