@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="110dp">
@@ -19,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:padding="5dp"
-        android:text="@string/estate_list_type"
+        tools:text="@string/estate_list_type"
+        style="@style/TextAppearance.Material3.TitleLarge"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/item_estate_picture"
@@ -32,7 +34,8 @@
         android:layout_marginStart="10dp"
         android:paddingStart="5dp"
         android:paddingEnd="0dp"
-        android:text="@string/estate_list_city"
+        tools:text="@string/estate_list_city"
+        style="@style/TextAppearance.Material3.TitleLarge"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/item_estate_price"
         app:layout_constraintLeft_toRightOf="@id/item_estate_picture"
@@ -44,8 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:padding="5dp"
-        android:text="@string/estate_list_price"
+        tools:text="@string/estate_list_price"
         android:textColor="@color/estate_list_price"
+        style="@style/TextAppearance.Material3.TitleLarge"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/item_estate_picture" />

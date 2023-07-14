@@ -48,6 +48,9 @@ class EstateSheetFragment(
         val numbersOfRoomsTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_rooms)
         val numbersOfBathroomsTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_bathrooms)
         val numbersOfBedroomsTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_bedrooms)
+        val schoolDistanceEditText: TextView = view.findViewById(R.id.fragment_sheet_estate_distance_school)
+        val shopDistanceEditText: TextView = view.findViewById(R.id.fragment_sheet_estate_distance_shop)
+        val parkDistanceEditText: TextView = view.findViewById(R.id.fragment_sheet_estate_distance_park)
         val locationTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_location)
         view.findViewById<ImageView>(R.id.fragment_sheet_estate_edit_button).setOnClickListener {
             estateSheetFragmentListener.launchEstateEditFragment(viewModel.getSelectedEstateLiveData().value ?: return@setOnClickListener )
@@ -66,6 +69,9 @@ class EstateSheetFragment(
                 numbersOfRoomsTextView.text = estate.numberOfRooms.toString()
                 numbersOfBathroomsTextView.text = estate.numberOfBathrooms.toString()
                 numbersOfBedroomsTextView.text = estate.numberOfBedrooms.toString()
+                schoolDistanceEditText.text = estate.schoolDistance.toString()
+                shopDistanceEditText.text = estate.shopDistance.toString()
+                parkDistanceEditText.text = estate.parkDistance.toString()
                 locationTextView.text = viewModel.getLocationString(estate)
                 viewModel.getPictureListLiveData(estate.id).observe(viewLifecycleOwner) { pictureList -> adapter.submitList(pictureList) }
                 if (::googleMap.isInitialized) {

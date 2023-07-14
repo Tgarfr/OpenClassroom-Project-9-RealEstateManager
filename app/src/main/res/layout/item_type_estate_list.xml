@@ -6,6 +6,7 @@
     <TextView
         android:id="@+id/spinner_item_type_estate"
         android:layout_width="match_parent"
+        style="@style/TextAppearance.Material3.BodyMedium"
         android:layout_height="wrap_content" />
 
 </FrameLayout>
