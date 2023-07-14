@@ -164,11 +164,14 @@ class EstateEditFragment(
                 zipCode = zipCodeEditText.text.toString(),
                 city =  cityEditText.text.toString(),
                 country = countryEditText.text.toString(),
+                latitude = null,
+                longitude = null,
                 status = Estate.Status.AVAILABLE,
                 entryDate = Calendar.getInstance().timeInMillis,
                 saleDate = null,
                 agent = "Agent"
             )
+            estate.geocodePosition(requireContext())
 
             when (setting) {
                 Setting.ADD -> {

@@ -4,6 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_main_map"
+        android:icon="@drawable/icon_map"
+        android:title="@string/map"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
         android:id="@+id/menu_main_loan_simulator"
         android:icon="@drawable/icon_loan_simulator"
         android:title="@string/loan_simulator"

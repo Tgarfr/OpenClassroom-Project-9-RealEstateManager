@@ -12,6 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
@@ -19,13 +25,14 @@ import com.openclassrooms.realestatemanager.model.Picture
 
 class EstateSheetFragment(
     private val estateSheetFragmentListener: EstateSheetFragmentListener
-    ) : Fragment(), EstatePicturesAdapter.EstatePicturesAdapterListener {
+    ) : Fragment(), EstatePicturesAdapter.EstatePicturesAdapterListener, OnMapReadyCallback {
 
     interface EstateSheetFragmentListener {
         fun launchEstateEditFragment(estate: Estate)
     }
 
     private lateinit var viewModel: EstateSheetFragmentViewModel
+    private lateinit var googleMap: GoogleMap
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,8 +68,15 @@ class EstateSheetFragment(
                 numbersOfBedroomsTextView.text = estate.numberOfBedrooms.toString()
                 locationTextView.text = viewModel.getLocationString(estate)
                 viewModel.getPictureListLiveData(estate.id).observe(viewLifecycleOwner) { pictureList -> adapter.submitList(pictureList) }
+                if (::googleMap.isInitialized) {
+                    onMapReady(this.googleMap)
+                }
             }
         }
+
+        val mapView = view.findViewById<MapView>(R.id.fragment_sheet_estate_map)
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync(this)
 
         return view
     }
@@ -71,6 +85,22 @@ class EstateSheetFragment(
         val intent = Intent(requireContext(), PictureActivity::class.java)
         intent.putExtra(PictureActivity.BUNDLE_PICTURE_ID_KEY, picture.id)
         ActivityCompat.startActivity(requireContext(), intent, null)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        this.googleMap = googleMap
+        viewModel.getSelectedEstateLiveData().value?.let { estate ->
+            val latitude = estate.latitude
+            val longitude = estate.longitude
+            if (latitude != null && longitude != null) {
+                val latLng = LatLng(latitude, longitude)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13F))
+                googleMap.clear()
+                googleMap.addMarker(MarkerOptions()
+                    .position(latLng)
+                    .title(getString(R.string.map_position_estate)))
+            }
+        }
     }
 
 }
