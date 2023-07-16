@@ -36,7 +36,7 @@ class EstateSheetFragmentViewModel(
     fun getLocationString(estate: Estate?): String {
         if (estate != null) {
             if (estate.additionalAddress == null) {
-                return "{$estate.houseNumber} ${estate.street}\n${estate.city}\n${estate.zipCode}\n${estate.country}"
+                return "${estate.houseNumber} ${estate.street}\n${estate.city}\n${estate.zipCode}\n${estate.country}"
             }
             return "${estate.houseNumber} ${estate.street}\n${estate.additionalAddress}\n${estate.city}\n${estate.zipCode}\n${estate.country}"
         }

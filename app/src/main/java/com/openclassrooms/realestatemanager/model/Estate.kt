@@ -1,9 +1,6 @@
 package com.openclassrooms.realestatemanager.model
 
-import android.content.Context
 import android.content.res.Resources
-import android.location.Geocoder
-import android.os.Build
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.openclassrooms.realestatemanager.R
@@ -24,8 +21,8 @@ data class Estate(
     val zipCode: String,
     val city: String,
     val country: String,
-    var latitude: Double?,
-    var longitude: Double?,
+    val latitude: Double?,
+    val longitude: Double?,
     val status: Status,
     val entryDate: Long,
     val saleDate: Long?,
@@ -34,23 +31,6 @@ data class Estate(
 
     companion object {
         const val ROOM_TABLE_NAME : String = "estate"
-    }
-
-    fun geocodePosition(context: Context) {
-        val geocoder = Geocoder(context)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            geocoder.getFromLocationName("$houseNumber $street, $zipCode $city, $country, ",1) { addresses ->
-                latitude = addresses[0].latitude
-                longitude = addresses[0].longitude
-            }
-        } else {
-            @Suppress("DEPRECATION")
-            val addresses = geocoder.getFromLocationName("$houseNumber $street, $zipCode $city, $country, ",1)
-             addresses?.let {
-                 latitude = it[0].latitude
-                 longitude = it[0].longitude
-             }
-        }
     }
 
     enum class Type(private val type: Int) {
