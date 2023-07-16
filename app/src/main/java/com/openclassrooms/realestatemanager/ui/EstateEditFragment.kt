@@ -149,6 +149,13 @@ class EstateEditFragment(
     private val clickOnValidButton = OnClickListener {
         if (formIsCompleted()) {
 
+            val houseNumber = houseNumberEditText.text.toString().toInt()
+            val street = streetEditText.text.toString()
+            val zipCode = zipCodeEditText.text.toString()
+            val city = cityEditText.text.toString()
+            val country = countryEditText.text.toString()
+            val position = viewModel.computeAddress("$houseNumber $street, $zipCode $city, $country", requireContext())
+
             val estate = Estate(
                 id = this.id ?: return@OnClickListener,
                 type = this.type ?: return@OnClickListener,
@@ -158,20 +165,19 @@ class EstateEditFragment(
                 numberOfBathrooms = numberOfBathroomsEditText.text.toString().toInt(),
                 numberOfBedrooms = numberOfBedroomsEditText.text.toString().toInt(),
                 description = descriptionEditText.text.toString(),
-                houseNumber = houseNumberEditText.text.toString().toInt(),
-                street = streetEditText.text.toString(),
+                houseNumber = houseNumber,
+                street = street,
                 additionalAddress = additionalAddressEditText.text.toString(),
-                zipCode = zipCodeEditText.text.toString(),
-                city =  cityEditText.text.toString(),
-                country = countryEditText.text.toString(),
-                latitude = null,
-                longitude = null,
+                zipCode = zipCode,
+                city = city,
+                country = country,
+                latitude = position.latitude,
+                longitude = position.longitude,
                 status = Estate.Status.AVAILABLE,
                 entryDate = Calendar.getInstance().timeInMillis,
                 saleDate = null,
                 agent = "Agent"
             )
-            estate.geocodePosition(requireContext())
 
             when (setting) {
                 Setting.ADD -> {

@@ -1,5 +1,9 @@
 package com.openclassrooms.realestatemanager.ui
 
+import android.content.Context
+import android.location.Geocoder
+import android.location.Location
+import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -69,6 +73,25 @@ class EstateEditFragmentViewModel(
         val pictureList = newPictureListLiveData.value?.toMutableList() ?: return
         pictureList.add(picture)
         newPictureListLiveData.value = pictureList.toList()
+    }
+
+    fun computeAddress(addressString: String, context: Context): Location {
+        val location = Location("Location")
+        val geocoder = Geocoder(context)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            geocoder.getFromLocationName(addressString,1) { addresses ->
+                location.latitude = addresses[0].latitude
+                location.longitude = addresses[0].longitude
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            val addresses = geocoder.getFromLocationName(addressString,1)
+            addresses?.let {
+                location.latitude = it[0].latitude
+                location.longitude = it[0].longitude
+            }
+        }
+        return location
     }
 
 }
