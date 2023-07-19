@@ -1,7 +1,11 @@
 package com.openclassrooms.realestatemanager.ui
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -16,14 +20,22 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
 import java.util.Calendar
 
 class EstateEditFragment(
@@ -58,11 +70,11 @@ class EstateEditFragment(
         fun launchEstateSheetFragment(estate: Estate)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    companion object {
+        private const val CACHE_PICTURE_NAME = "cachePicture.jpg"
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_edit_estate, container, false)
         viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[EstateEditFragmentViewModel::class.java]
         initViews(view)
@@ -116,9 +128,8 @@ class EstateEditFragment(
     }
 
     private fun initPictures (view: View)  {
-        view.findViewById<ImageView>(R.id.fragment_edit_estate_button_add_pictures).setOnClickListener {
-            registerForAddPicturesButtonResult.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-        }
+        view.findViewById<ImageView>(R.id.fragment_edit_estate_button_add_picture).setOnClickListener { launchPickPictureWithPickVisualMedia() }
+        view.findViewById<ImageView>(R.id.fragment_edit_estate_button_take_picture).setOnClickListener { launchTakePictureWithCamera() }
         picturesAdapter = EstatePicturesAdapter(requireContext(), null)
         val recyclerView = view.findViewById<RecyclerView>(R.id.fragment_sheet_estate_pictures_recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -229,31 +240,80 @@ class EstateEditFragment(
         return false
     }
 
-    private val registerForAddPicturesButtonResult = registerForActivityResult(
+    private fun addPictureToPictureList(pictureUri: Uri) {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+
+        alertDialogBuilder.setTitle(resources.getString(R.string.picture_description_write))
+
+        val editText = EditText(context)
+        editText.inputType = InputType.TYPE_CLASS_TEXT
+        alertDialogBuilder.setView(editText)
+
+        alertDialogBuilder.setPositiveButton(resources.getString(R.string.picture_button_ok), object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                if (editText.text.isEmpty()) {
+                    Toast.makeText(activity, resources.getString(R.string.picture_description_required), Toast.LENGTH_SHORT).show()
+                } else {
+                    val picture = Picture(System.currentTimeMillis(), id ?: return, pictureUri,editText.text.toString())
+                    viewModel.addPicture(picture)
+                    Toast.makeText(activity, resources.getString(R.string.picture_added), Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        alertDialogBuilder.show()
+    }
+
+    private fun launchPickPictureWithPickVisualMedia() {
+        registerForPickPictureResult.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private fun launchTakePictureWithCamera() {
+        if (isCameraPermission()) {
+            registerForTakePictureResult.launch(null)
+        }
+    }
+
+    private val registerForPickPictureResult = registerForActivityResult(
         ActivityResultContracts.PickMultipleVisualMedia()) { uris ->
-            if (uris.isNotEmpty()) {
-                val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        if (uris.isNotEmpty()) {
+            addPictureToPictureList(uris[0])
+        }
+    }
 
-                alertDialogBuilder.setTitle(resources.getString(R.string.picture_description_write))
-
-                val editText = EditText(context)
-                editText.inputType = InputType.TYPE_CLASS_TEXT
-                alertDialogBuilder.setView(editText)
-
-                alertDialogBuilder.setPositiveButton(resources.getString(R.string.picture_button_ok), object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                        if (editText.text.isEmpty()) {
-                           Toast.makeText(activity, resources.getString(R.string.picture_description_required), Toast.LENGTH_SHORT).show()
-                        } else {
-                            val picture = Picture(System.currentTimeMillis(), id ?: return, uris[0],editText.text.toString())
-                            viewModel.addPicture(picture)
-                            Toast.makeText(activity, resources.getString(R.string.picture_added), Toast.LENGTH_SHORT).show()
-                        }
+    private val registerForTakePictureResult = registerForActivityResult(
+        ActivityResultContracts.TakePicturePreview()) { bitmap ->
+        if (bitmap != null) {
+            val file = File(requireContext().externalCacheDir, CACHE_PICTURE_NAME)
+            lifecycleScope.launch {
+                try {
+                    withContext(Dispatchers.IO) {
+                        val outputStream = FileOutputStream(file)
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                        outputStream.flush()
+                        outputStream.close()
                     }
-                })
+                    addPictureToPictureList(file.toUri())
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
 
-                alertDialogBuilder.show()
             }
         }
+    }
+
+    private fun isCameraPermission(): Boolean {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            permissionLauncher.launch(Manifest.permission.CAMERA)
+            return false
+        }
+        return true
+    }
+
+    private val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+        if (isGranted) {
+            launchTakePictureWithCamera()
+        }
+    }
 
 }
