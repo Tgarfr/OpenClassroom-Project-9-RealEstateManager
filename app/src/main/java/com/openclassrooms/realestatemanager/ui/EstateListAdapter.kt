@@ -40,8 +40,7 @@ class EstateListAdapter(
         if (selectedEstate == estate) {
             holder.itemView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.estate_list_selected_estate, null))
             holder.price.setHintTextColor(ResourcesCompat.getColor(resources, R.color.estate_list_selected_estate_text, null))
-        }
-        if (lastSelectedEstate == estate) {
+        } else {
             holder.itemView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.design_default_color_background, null))
             holder.price.setHintTextColor(ResourcesCompat.getColor(resources, R.color.estate_list_price, null))
         }

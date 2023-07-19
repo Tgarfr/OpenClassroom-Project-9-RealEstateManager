@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_filter_list_guideline_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_filter_list_guideline_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_filter_list_guideline_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_min"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/filter_list_min"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_max"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/filter_list_max"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_price"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:labelFor="@id/fragment_filter_list_estate_price_min"
+        android:text="@string/filter_list_estate_price"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_price_min"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_price_min" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_price_min"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="numberDecimal"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_min" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_price_max"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="numberDecimal"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_price_min" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_filter_list_estate_icon_surface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/filter_list_estate_surface"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_surface"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_surface_min"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_surface_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_surface"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/fragment_filter_list_estate_surface_min"
+        android:text="@string/filter_list_estate_surface"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_surface"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_icon_surface"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_surface" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_surface_min"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_price_min" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_surface_max"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_surface_min"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_surface_min" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_filter_list_estate_icon_number_of_rooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/filter_list_estate_numbers_of_rooms"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_room"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_surface_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_number_of_rooms"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/fragment_filter_list_estate_number_of_rooms_min"
+        android:text="@string/filter_list_estate_numbers_of_rooms"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_rooms"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_icon_number_of_rooms"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_number_of_rooms" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_number_of_rooms_min"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_rooms"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_title_number_of_rooms" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_number_of_rooms_max"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_number_of_rooms_min"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_title_number_of_rooms" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_filter_list_estate_icon_number_of_bathrooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/filter_list_estate_numbers_of_bathrooms"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_bathroom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_number_of_rooms_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_number_of_bathrooms"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/fragment_filter_list_estate_number_of_bathrooms_min"
+        android:text="@string/filter_list_estate_numbers_of_bathrooms"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_bathrooms"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_icon_number_of_bathrooms"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_number_of_bathrooms" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_number_of_bathrooms_min"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_bathrooms"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_number_of_bathrooms" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_number_of_bathrooms_max"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_bathrooms"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_number_of_bathrooms" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_filter_list_estate_icon_number_of_bedrooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/filter_list_estate_numbers_of_bedrooms"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_bedroom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_number_of_bathrooms_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_number_of_bedrooms"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/fragment_filter_list_estate_number_of_bedrooms_min"
+        android:text="@string/filter_list_estate_numbers_of_bedrooms"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_bedrooms"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_icon_number_of_bedrooms"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_number_of_bedrooms" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_number_of_bedrooms_min"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_bedrooms"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_number_of_bedrooms" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_number_of_bedrooms_max"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="number"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_bedrooms"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_number_of_bedrooms" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_filter_list_estate_icon_distance_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/sheet_estate_distance_school"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_school"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_icon_number_of_bedrooms" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_distance_school"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="@string/filter_list_estate_distance_school"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_distance_school"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_icon_distance_school"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_distance_school" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_distance_school_min"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_title_distance_school"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_title_distance_school" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_distance_school_max"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_title_distance_school"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_title_distance_school" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_filter_list_estate_icon_distance_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/sheet_estate_distance_shop"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_shop"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_estate_icon_distance_school"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_distance_school_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_distance_shop"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="@string/filter_list_estate_distance_shop"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_distance_shop"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_icon_distance_shop"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_distance_shop" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_distance_shop_min"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_title_distance_shop"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_title_distance_shop" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_distance_shop_max"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_title_distance_shop"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_title_distance_shop" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_filter_list_estate_icon_distance_park"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/sheet_estate_distance_parc"
+        android:padding="5dp"
+        android:src="@drawable/icon_estate_parc"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_estate_icon_distance_school"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_distance_shop_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_distance_park"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="@string/filter_list_estate_distance_parc"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_icon_distance_park"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_icon_distance_park"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_icon_distance_park" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_distance_park_min"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_title_distance_park"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_title_distance_park" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_distance_park_max"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_title_distance_park"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_title_distance_park" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_number_of_pictures"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:labelFor="@id/fragment_filter_list_estate_price_min"
+        android:text="@string/filter_list_number_of_pictures"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_number_of_picture_min"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_number_of_picture_min" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_number_of_picture_min"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="numberDecimal"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_1"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_distance_park_min" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_number_of_picture_max"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="numberDecimal"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_2"
+        app:layout_constraintRight_toRightOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_number_of_picture_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_type"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="40dp"
+        android:labelFor="@id/fragment_filter_list_estate_spinner_type"
+        android:text="@string/filter_list_estate_type"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_spinner_type"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_spinner_type" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/fragment_filter_list_estate_spinner_type"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_estate_put_on_the_market_since"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_price_min" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_put_on_the_market_since"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:labelFor="@id/fragment_filter_list_estate_price_min"
+        android:layout_marginStart="40dp"
+        android:text="@string/filter_list_put_on_the_market_since"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_put_on_the_market_since"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_put_on_the_market_since" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_put_on_the_market_since"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:autofillHints=""
+        android:inputType="numberDecimal"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_title_put_on_the_market_since"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_spinner_type" />
+
+    <TextView
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/week"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_put_on_the_market_since"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_put_on_the_market_since"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_put_on_the_market_since" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_sold_since"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:labelFor="@id/fragment_filter_list_estate_price_min"
+        android:layout_marginStart="40dp"
+        android:text="@string/filter_list_sold_since"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_sold_since"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_sold_since" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_sold_since"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="numberDecimal"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_estate_put_on_the_market_since"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_put_on_the_market_since" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/month"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_sold_since"
+        app:layout_constraintLeft_toRightOf="@id/fragment_filter_list_estate_sold_since"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_sold_since" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_filter_list_estate_title_sector"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="40dp"
+        android:labelFor="@id/fragment_filter_list_estate_price_min"
+        android:text="@string/filter_list_sector"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_filter_list_estate_sector"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_guideline_3"
+        app:layout_constraintTop_toTopOf="@id/fragment_filter_list_estate_sector" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_filter_list_estate_sector"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="@id/fragment_filter_list_estate_put_on_the_market_since"
+        app:layout_constraintTop_toBottomOf="@id/fragment_filter_list_estate_sold_since" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_filter_list_estate_button_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_list_estate_button_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

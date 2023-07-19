@@ -50,9 +50,9 @@
     <string name="edit_estate_description">Description :</string>
     <string name="edit_estate_surface">Surface :</string>
     <string name="edit_estate_surface_unit">sq in</string>
-    <string name="edit_estate_numbers_of_rooms">Numbers of rooms :</string>
-    <string name="edit_estate_numbers_of_bathrooms">Numbers of bathrooms :</string>
-    <string name="edit_estate_numbers_of_bedrooms">Numbers of bedrooms :</string>
+    <string name="edit_estate_numbers_of_rooms">Number of rooms :</string>
+    <string name="edit_estate_numbers_of_bathrooms">Number of bathrooms :</string>
+    <string name="edit_estate_numbers_of_bedrooms">Number of bedrooms :</string>
     <string name="edit_estate_house_number">House number :</string>
     <string name="edit_estate_distance_school">School distance :</string>
     <string name="edit_estate_distance_parc">Parc distance :</string>
@@ -111,5 +111,34 @@
     <string name="map_center">Map center</string>
     <string name="map_position_estate">Estate position</string>
     <string name="map_position_agent">Agent position</string>
+    
+    // filter estate list
+    <string name="filter_list_estate_title">Estate list filter</string>
+    <string name="filter_list_min">min</string>
+    <string name="filter_list_max">max</string>
+    <string name="filter_list_estate_price">Price :</string>
+    <string name="filter_list_estate_type">Type :</string>
+    <string name="filter_list_estate_surface">Surface : (sq in)</string>
+    <string name="filter_list_estate_numbers_of_rooms">Number of rooms :</string>
+    <string name="filter_list_estate_numbers_of_bathrooms">Number of bathrooms :</string>
+    <string name="filter_list_estate_numbers_of_bedrooms">Number of bedrooms :</string>
+    <string name="filter_list_estate_house_number">House number :</string>
+    <string name="filter_list_estate_distance_school">School distance : (yd)</string>
+    <string name="filter_list_estate_distance_parc">Parc distance : (yd)</string>
+    <string name="filter_list_estate_distance_shop">Shop distance : (yd)</string>
+    <string name="filter_list_estate_street">Street :</string>
+    <string name="filter_list_estate_additional_address">Additional address :</string>
+    <string name="filter_list_estate_zipCode">Zip Code :</string>
+    <string name="filter_list_estate_city">City :</string>
+    <string name="filter_list_estate_country">Country :</string>
+    <string name="filter_list_estate_button_search">Search</string>
+    <string name="filter_list_estate_location">Location :</string>
+    <string name="filter_list_number_of_pictures">Number_of_pictures :</string>
+    <string name="filter_list_put_on_the_market_since">Put on the market since :</string>
+    <string name="filter_list_sold_since">Sold since :</string>
+    <string name="filter_list_sector">Sector :</string>
+    <string name="week">week</string>
+    <string name="month">month</string>
+
 
 </resources>

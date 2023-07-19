@@ -19,6 +19,7 @@ class MainActivity :
     EstateListFragment.EstateListFragmentListener,
     EstateSheetFragment.EstateSheetFragmentListener,
     EstateEditFragment.EstateEditFragmentListener,
+    EstateListFilterFragment.EstateListFilterFragmentListener,
     MapFragment.MapFragmentListener {
 
     private lateinit var viewModel: MainActivityViewModel
@@ -41,6 +42,10 @@ class MainActivity :
                 .setReorderingAllowed(false)
                 .commit()
         }
+    }
+
+    override fun launchEstateListFragment() {
+        replaceFragment(EstateListFragment(this))
     }
 
     override fun launchEstateSheetFragment(estate: Estate) {
@@ -66,6 +71,7 @@ class MainActivity :
                 ActivityCompat.startActivity(this, intent, null)
             }
             R.id.menu_main_map -> replaceFragment(MapFragment(this))
+            R.id.menu_main_filter_list_estate -> replaceFragment(EstateListFilterFragment(this))
         }
         return super.onOptionsItemSelected(item)
     }

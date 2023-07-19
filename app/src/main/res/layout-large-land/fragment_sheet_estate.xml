@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_edit_button"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_media"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         tools:orientation="horizontal"
         tools:listitem="@layout/item_picture_estate" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_pictures_recyclerview" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_description" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_description" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_surface"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_surface" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_surface"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_surface" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_numbers_of_rooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_surface"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_surface" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_numbers_of_rooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_numbers_of_rooms"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_numbers_of_rooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_numbers_of_rooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_surface"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_numbers_of_rooms" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_numbers_of_bathrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_surface"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_numbers_of_rooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_numbers_of_bathrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_numbers_of_bathrooms"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_numbers_of_bathrooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_numbers_of_bathrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_surface"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_numbers_of_bathrooms" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_numbers_of_bedrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_surface"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_numbers_of_bathrooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_numbers_of_bedrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_numbers_of_bedrooms"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_numbers_of_bedrooms" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_numbers_of_bedrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
         app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_surface"
         app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_numbers_of_bedrooms" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_icon_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -207,7 +207,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_title_distance_school"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_surface" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_title_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
         app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_location"
         app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_location" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_sheet_estate_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
