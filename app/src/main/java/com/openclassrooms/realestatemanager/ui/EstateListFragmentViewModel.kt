@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.openclassrooms.realestatemanager.model.Estate
+import com.openclassrooms.realestatemanager.model.EstateItem
 import com.openclassrooms.realestatemanager.model.Picture
 import com.openclassrooms.realestatemanager.model.SearchCriteria
 import com.openclassrooms.realestatemanager.repository.EstateRepository
@@ -18,27 +19,30 @@ class EstateListFragmentViewModel(
     private val geocodingRepository: GeocodingRepository
     ) : ViewModel() {
         
-    fun getEstateListLiveData(): LiveData<List<Estate>> {
+    fun getEstateItemListLiveData(): LiveData<List<EstateItem>> {
 
         var noFilteredEstateList = listOf<Estate>()
         var pictureList = listOf<Picture>()
         var searchCriteria = listOf<SearchCriteria>()
 
-        val mediatorLiveData = MediatorLiveData<List<Estate>>()
+        val mediatorLiveData = MediatorLiveData<List<EstateItem>>()
 
         mediatorLiveData.addSource(estateRepository.getEstateListLiveData()) { estateList ->
             noFilteredEstateList = estateList
-            mediatorLiveData.value = filterEstateList(estateList, searchCriteria, pictureList)
+            val filteredEstateList = filterEstateList(estateList, searchCriteria, pictureList)
+            mediatorLiveData.value = getEstateItemListFromEstateList(filteredEstateList, pictureList)
         }
 
         mediatorLiveData.addSource(searchRepository.getSearchCriteriaLiveData()) { newSearchCriteria ->
             searchCriteria = newSearchCriteria
-            mediatorLiveData.value = filterEstateList(noFilteredEstateList, newSearchCriteria, pictureList)
+            val filteredEstateList = filterEstateList(noFilteredEstateList, newSearchCriteria, pictureList)
+            mediatorLiveData.value = getEstateItemListFromEstateList(filteredEstateList, pictureList)
         }
 
         mediatorLiveData.addSource(pictureRepository.getPictureListLiveData()) { newPictureList ->
             pictureList = newPictureList
-            mediatorLiveData.value = filterEstateList(noFilteredEstateList, searchCriteria, newPictureList)
+            val filteredEstateList = filterEstateList(noFilteredEstateList, searchCriteria, newPictureList)
+            mediatorLiveData.value = getEstateItemListFromEstateList(filteredEstateList, pictureList)
         }
 
         return mediatorLiveData
@@ -161,6 +165,16 @@ class EstateListFragmentViewModel(
         val calendar = java.util.Calendar.getInstance()
         calendar.add(java.util.Calendar.MONTH, monthOffset)
         return calendar.timeInMillis
+    }
+
+    private fun getEstateItemListFromEstateList(estateList: List<Estate>, pictureList: List<Picture>): List<EstateItem> {
+        if (pictureList.isNotEmpty()) {
+            return estateList.map { estate ->
+                val picture = pictureList.find { picture -> picture.estateId == estate.id }
+                picture?.let { EstateItem(estate, picture.getUri()) } ?: EstateItem(estate, null)
+            }
+        }
+        return estateList.map { estate -> EstateItem(estate, null) }
     }
 
 }

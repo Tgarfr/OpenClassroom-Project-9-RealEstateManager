@@ -23,21 +23,17 @@ class EstateListFragment(
         fun launchEstateSheetFragment(estate: Estate)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_list_estate, container, false)
         viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[EstateListFragmentViewModel::class.java]
 
         val recyclerView: RecyclerView = view.findViewById(R.id.main_activity_estate_list_recyclerview)
-        val estateListAdapter = EstateListAdapter(this, resources)
+        val estateListAdapter = EstateListAdapter(this, requireContext())
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = estateListAdapter
 
-        viewModel.getEstateListLiveData().observe(viewLifecycleOwner) { estateList -> estateListAdapter.submitList(estateList)}
-        viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate -> estateListAdapter.selectedEstateColor(estate)}
+        viewModel.getEstateItemListLiveData().observe(viewLifecycleOwner) { estateItemList -> estateListAdapter.submitList(estateItemList) }
+        viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate -> estateListAdapter.selectedEstate(estate.id) }
 
         return view
     }
