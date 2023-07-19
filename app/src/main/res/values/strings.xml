@@ -43,6 +43,7 @@
     <string name="edit_estate_edit">Edit estate</string>
     <string name="edit_estate_add">Add estate</string>
     <string name="edit_estate_add_picture">Add picture</string>
+    <string name="edit_estate_take_picture">Take picture</string>
     <string name="edit_estate_edited">Estate edited</string>
     <string name="edit_estate_added">Estate added</string>
     <string name="edit_estate_type">Type :</string>
@@ -139,6 +140,5 @@
     <string name="filter_list_sector">Sector :</string>
     <string name="week">week</string>
     <string name="month">month</string>
-
 
 </resources>
