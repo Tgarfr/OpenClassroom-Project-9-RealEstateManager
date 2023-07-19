@@ -163,7 +163,7 @@ class EstateEditFragment(
             val zipCode = zipCodeEditText.text.toString()
             val city = cityEditText.text.toString()
             val country = countryEditText.text.toString()
-            val position = viewModel.computeAddress("$houseNumber $street, $zipCode $city, $country", requireContext())
+            val position = viewModel.geocodeAddress("$houseNumber $street, $zipCode $city, $country")
 
             val estate = Estate(
                 id = this.id ?: return@OnClickListener,
@@ -183,8 +183,8 @@ class EstateEditFragment(
                 zipCode = zipCode,
                 city = city,
                 country = country,
-                latitude = position.latitude,
-                longitude = position.longitude,
+                latitude = position?.latitude,
+                longitude = position?.longitude,
                 status = Estate.Status.AVAILABLE,
                 entryDate = Calendar.getInstance().timeInMillis,
                 saleDate = null,

@@ -1,9 +1,6 @@
 package com.openclassrooms.realestatemanager.ui
 
-import android.content.Context
-import android.location.Geocoder
 import android.location.Location
-import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
 import com.openclassrooms.realestatemanager.repository.EstateRepository
+import com.openclassrooms.realestatemanager.repository.GeocodingRepository
 import com.openclassrooms.realestatemanager.repository.PictureRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +16,8 @@ import kotlinx.coroutines.launch
 
 class EstateEditFragmentViewModel(
     private val estateRepository: EstateRepository,
-    private val pictureRepository: PictureRepository
+    private val pictureRepository: PictureRepository,
+    private val geocodingRepository: GeocodingRepository
 ) : ViewModel() {
 
     private enum class Setting { ADD, EDIT }
@@ -75,23 +74,6 @@ class EstateEditFragmentViewModel(
         newPictureListLiveData.value = pictureList.toList()
     }
 
-    fun computeAddress(addressString: String, context: Context): Location {
-        val location = Location("Location")
-        val geocoder = Geocoder(context)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            geocoder.getFromLocationName(addressString,1) { addresses ->
-                location.latitude = addresses[0].latitude
-                location.longitude = addresses[0].longitude
-            }
-        } else {
-            @Suppress("DEPRECATION")
-            val addresses = geocoder.getFromLocationName(addressString,1)
-            addresses?.let {
-                location.latitude = it[0].latitude
-                location.longitude = it[0].longitude
-            }
-        }
-        return location
-    }
+    fun geocodeAddress(addressString: String): Location? = geocodingRepository.geocodeAddress(addressString)
 
 }

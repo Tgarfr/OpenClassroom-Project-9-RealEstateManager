@@ -4,13 +4,17 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.openclassrooms.realestatemanager.repository.EstateRepository
+import com.openclassrooms.realestatemanager.repository.GeocodingRepository
 import com.openclassrooms.realestatemanager.repository.PictureRepository
+import com.openclassrooms.realestatemanager.repository.SearchRepository
 import com.openclassrooms.realestatemanager.ui.*
 
 class ViewModelFactory private constructor(context: Context): ViewModelProvider.Factory {
 
     private val estateRepository: EstateRepository = Injection.getInstance(context).estateRepository
     private val pictureRepository: PictureRepository = Injection.getInstance(context).pictureRepository
+    private val searchRepository: SearchRepository = Injection.getInstance(context).searchRepository
+    private val geocodingRepository: GeocodingRepository = Injection.getInstance(context).geocodingRepository
 
     companion object {
         @Volatile
@@ -28,13 +32,13 @@ class ViewModelFactory private constructor(context: Context): ViewModelProvider.
             return MainActivityViewModel(estateRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateListFragmentViewModel::class.java)) {
-            return EstateListFragmentViewModel(estateRepository) as T
+            return EstateListFragmentViewModel(estateRepository, searchRepository, pictureRepository, geocodingRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateSheetFragmentViewModel::class.java)) {
             return EstateSheetFragmentViewModel(estateRepository, pictureRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateEditFragmentViewModel::class.java)) {
-            return EstateEditFragmentViewModel(estateRepository, pictureRepository) as T
+            return EstateEditFragmentViewModel(estateRepository, pictureRepository, geocodingRepository) as T
         }
         if (modelClass.isAssignableFrom(PictureActivityViewModel::class.java)) {
             return PictureActivityViewModel(pictureRepository) as T
@@ -44,6 +48,9 @@ class ViewModelFactory private constructor(context: Context): ViewModelProvider.
         }
         if (modelClass.isAssignableFrom(MapFragmentViewModel::class.java)) {
             return MapFragmentViewModel(estateRepository) as T
+        }
+        if (modelClass.isAssignableFrom(EstateListFilterFragmentViewModel::class.java)) {
+            return EstateListFilterFragmentViewModel(searchRepository) as T
         }
         throw java.lang.IllegalArgumentException("Unknown ViewModel Class")
     }

@@ -2,7 +2,6 @@ package com.openclassrooms.realestatemanager.api
 
 import com.openclassrooms.realestatemanager.model.Estate
 import kotlinx.coroutines.flow.MutableStateFlow
-import java.util.Calendar
 
 @Suppress("unused")
 class FakeEstateApi : EstateApi {
@@ -54,7 +53,7 @@ class FakeEstateApi : EstateApi {
                 latitude = 47.79932966201001,
                 longitude = 2.144782738248518,
                 status = Estate.Status.AVAILABLE,
-                entryDate = Calendar.getInstance().timeInMillis,
+                entryDate = 1672531200000,
                 saleDate = null,
                 agent = "Mr Bob"
             ),
@@ -79,7 +78,7 @@ class FakeEstateApi : EstateApi {
                 latitude = 47.796406482918876,
                 longitude = 2.125695038996438,
                 status = Estate.Status.AVAILABLE,
-                entryDate = Calendar.getInstance().timeInMillis,
+                entryDate = 1675209600000,
                 saleDate = null,
                 agent = "Mr Martin"
             ),
@@ -104,7 +103,7 @@ class FakeEstateApi : EstateApi {
                 latitude = 47.80414590516796,
                 longitude = 2.131085088785238,
                 status = Estate.Status.SOLD,
-                entryDate = Calendar.getInstance().timeInMillis,
+                entryDate = 1677628800000,
                 saleDate = null,
                 agent = "Mr Bob"
             ),
@@ -129,7 +128,7 @@ class FakeEstateApi : EstateApi {
                 latitude = 47.80341519356079,
                 longitude = 2.1364256885759754,
                 status = Estate.Status.AVAILABLE,
-                entryDate = Calendar.getInstance().timeInMillis,
+                entryDate = 1680307200000,
                 saleDate = null,
                 agent = "Mr Bob"
             )
