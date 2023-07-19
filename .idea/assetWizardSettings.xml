@@ -321,7 +321,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/photo_camera/baseline_photo_camera_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/crop_free/baseline_crop_free_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -331,8 +331,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="icon_edit_estate_take_picture" />
+                            <entry key="outputName" value="icon_estate_picture_default" />
                           </map>
                         </option>
                       </PersistentState>
