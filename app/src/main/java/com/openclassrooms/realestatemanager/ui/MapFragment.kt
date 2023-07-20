@@ -89,14 +89,20 @@ class MapFragment(
         val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         fusedLocationProviderClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
             .addOnSuccessListener{ location ->
-                val latLng = LatLng(location.latitude, location.longitude)
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13.5F))
-                val agentMarker = this.agentMarker
-                agentMarker?.let { agentMarker.remove() }
-                this.agentMarker = googleMap.addMarker(MarkerOptions()
-                    .position(latLng)
-                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_map_man))
-                    .title(getString(R.string.map_position_agent)))
+                if (isAdded) {
+                    val latLng = LatLng(location.latitude, location.longitude)
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13.5F))
+                    val agentMarker = this.agentMarker
+                    agentMarker?.let { agentMarker.remove() }
+                    if (isAdded) {
+                        this.agentMarker = googleMap.addMarker(
+                            MarkerOptions()
+                                .position(latLng)
+                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_map_man))
+                                .title(getString(R.string.map_position_agent))
+                        )
+                    }
+                }
             }
     }
 
