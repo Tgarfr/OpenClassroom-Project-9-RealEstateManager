@@ -22,6 +22,9 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class EstateSheetFragment(
     private val estateSheetFragmentListener: EstateSheetFragmentListener
@@ -33,6 +36,7 @@ class EstateSheetFragment(
 
     private lateinit var viewModel: EstateSheetFragmentViewModel
     private lateinit var googleMap: GoogleMap
+    private val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +46,7 @@ class EstateSheetFragment(
         val view: View = inflater.inflate(R.layout.fragment_sheet_estate, container, false)
         viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[EstateSheetFragmentViewModel::class.java]
 
+        val entryDateTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_entry_date)
         val statusTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_status)
         val descriptionTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_description)
         val surfaceTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_surface)
@@ -63,6 +68,7 @@ class EstateSheetFragment(
 
         viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate ->
             if (estate != null) {
+                entryDateTextView.text = simpleDateFormat.format(Date(estate.entryDate))
                 statusTextView.text = estate.status.getString(resources)
                 descriptionTextView.text = estate.description
                 surfaceTextView.text = estate.surface.toString()

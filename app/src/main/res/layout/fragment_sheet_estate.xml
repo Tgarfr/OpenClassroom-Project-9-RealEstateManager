@@ -7,26 +7,36 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_sheet_estate_title_entry_date"
+        style="@style/TextAppearance.Material3.TitleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/fragment_sheet_estate_entry_date"
+        android:text="@string/sheet_estate_entry_date"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_entry_date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_entry_date" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_sheet_estate_entry_date"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_title_entry_date"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="20/07/2023" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_sheet_estate_edit_button"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:contentDescription="@string/sheet_estate_edit"
-        android:padding="10dp"
         android:src="@drawable/icon_edit_estate"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_sheet_estate_title_media"
-        style="@style/TextAppearance.Material3.TitleMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="@string/sheet_estate_title_media"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -46,7 +56,7 @@
         app:layout_constraintBottom_toTopOf="@id/fragment_sheet_estate_title_description"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_media"
+        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_edit_button"
         tools:listitem="@layout/item_picture_estate"
         tools:orientation="horizontal" />
 
