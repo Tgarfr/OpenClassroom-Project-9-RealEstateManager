@@ -10,7 +10,6 @@ import com.openclassrooms.realestatemanager.repository.PictureRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Calendar
 
 class EstateSheetFragmentViewModel(
     private val estateRepository: EstateRepository,
@@ -47,7 +46,7 @@ class EstateSheetFragmentViewModel(
         return ""
     }
 
-    fun validateEstateSale(estate: Estate) {
+    fun validateEstateSale(estate: Estate, saleDate: Long) {
         CoroutineScope(Dispatchers.IO).launch {
             val soldEstate = Estate(
                 id = estate.id,
@@ -71,7 +70,7 @@ class EstateSheetFragmentViewModel(
                 longitude = estate.longitude,
                 status = Estate.Status.SOLD,
                 entryDate = estate.entryDate,
-                saleDate = Calendar.getInstance().timeInMillis,
+                saleDate = saleDate,
                 agent = estate.agent
             )
             estateRepository.updateEstate(soldEstate)
