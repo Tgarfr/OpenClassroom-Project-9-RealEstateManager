@@ -3,8 +3,10 @@ package com.openclassrooms.realestatemanager.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.openclassrooms.realestatemanager.model.Agent
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
+import com.openclassrooms.realestatemanager.repository.AgentRepository
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.repository.PictureRepository
 import kotlinx.coroutines.CoroutineScope
@@ -13,7 +15,8 @@ import kotlinx.coroutines.launch
 
 class EstateSheetFragmentViewModel(
     private val estateRepository: EstateRepository,
-    private val pictureRepository: PictureRepository
+    private val pictureRepository: PictureRepository,
+    private val agentRepository: AgentRepository
     ): ViewModel() {
 
     private val estateListObserver: Observer<List<Estate>> = Observer { estateList ->
@@ -32,6 +35,8 @@ class EstateSheetFragmentViewModel(
     }
 
     fun getSelectedEstateLiveData(): LiveData<Estate> = estateRepository.getSelectedEstateLiveData()
+
+    fun getAgentListLiveData(): LiveData<List<Agent>> = agentRepository.getAgentListLiveData()
 
     fun getPictureListLiveData(estateId: Long): LiveData<List<Picture>> =
         pictureRepository.getPictureListByEstateIdLiveData(estateId)
@@ -71,7 +76,7 @@ class EstateSheetFragmentViewModel(
                 status = Estate.Status.SOLD,
                 entryDate = estate.entryDate,
                 saleDate = saleDate,
-                agent = estate.agent
+                agentId = estate.agentId
             )
             estateRepository.updateEstate(soldEstate)
             estateRepository.setSelectedEstateLiveData(soldEstate)

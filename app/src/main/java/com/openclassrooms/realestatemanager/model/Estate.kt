@@ -29,7 +29,7 @@ data class Estate(
     val schoolDistance: Int,
     val shopDistance: Int,
     val parkDistance: Int,
-    val agent: String
+    val agentId: Long
 ) {
 
     companion object {

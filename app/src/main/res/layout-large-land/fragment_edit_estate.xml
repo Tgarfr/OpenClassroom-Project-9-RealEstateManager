@@ -27,7 +27,6 @@
         tools:text="20/07/2023"
         app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_entry_date" />
 
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_edit_estate_title_type"
         android:layout_width="0dp"
@@ -51,6 +50,30 @@
         app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_button_entry_date"
         app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_type"
         app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_button_entry_date" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_edit_estate_title_agent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/fragment_edit_estate_spinner_type"
+        android:text="@string/edit_estate_agent"
+        android:layout_marginStart="20dp"
+        style="@style/TextAppearance.Material3.TitleSmall"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_spinner_agent"
+        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_spinner_type"
+        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_spinner_agent" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/fragment_edit_estate_spinner_agent"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_spinner_type"
+        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_agent"
+        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_spinner_type" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_edit_estate_title_price"

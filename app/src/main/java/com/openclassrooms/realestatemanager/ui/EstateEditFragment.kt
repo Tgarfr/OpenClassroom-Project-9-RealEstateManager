@@ -15,7 +15,6 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
@@ -31,6 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.di.ViewModelFactory
+import com.openclassrooms.realestatemanager.model.Agent
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
 import kotlinx.coroutines.Dispatchers
@@ -55,10 +55,12 @@ class EstateEditFragment(
     private var entryDate: Long? = null
     private var status = Estate.Status.AVAILABLE
     private var type: Estate.Type? = null
+    private var agent: Agent? = null
     private val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
 
     private lateinit var entryDateButton: Button
-    private lateinit var spinner: Spinner
+    private lateinit var typeSpinner: Spinner
+    private lateinit var agentSpinner: Spinner
     private lateinit var priceEditText: EditText
     private lateinit var descriptionEditText: EditText
     private lateinit var surfaceEditText: EditText
@@ -94,6 +96,8 @@ class EstateEditFragment(
 
     private fun initViews(view: View) {
         entryDateButton = view.findViewById(R.id.fragment_edit_estate_button_entry_date)
+        typeSpinner = view.findViewById(R.id.fragment_edit_estate_spinner_type)
+        agentSpinner = view.findViewById(R.id.fragment_edit_estate_spinner_agent)
         priceEditText = view.findViewById(R.id.fragment_edit_estate_price)
         descriptionEditText = view.findViewById(R.id.fragment_edit_estate_description)
         surfaceEditText = view.findViewById(R.id.fragment_edit_estate_surface)
@@ -109,7 +113,6 @@ class EstateEditFragment(
         zipCodeEditText = view.findViewById(R.id.fragment_edit_estate_zipCode)
         cityEditText = view.findViewById(R.id.fragment_edit_estate_city)
         countryEditText = view.findViewById(R.id.fragment_edit_estate_country)
-        spinner = view.findViewById(R.id.fragment_edit_estate_spinner_type)
         validationButton = view.findViewById(R.id.fragment_edit_estate_button_validation)
     }
 
@@ -132,8 +135,14 @@ class EstateEditFragment(
         }
 
         val typesAdapter = EstateTypeSpinnerAdapter(resources)
-        spinner.adapter = typesAdapter
-        spinner.onItemSelectedListener = onSelectedType
+        typeSpinner.adapter = typesAdapter
+        typeSpinner.onItemSelectedListener = onSelectedType
+
+        viewModel.getAgentListLiveData().value?.let { agentList ->
+            val agentAdapter = EstateAgentSpinnerAdapter(agentList, resources)
+            agentSpinner.adapter = agentAdapter
+            agentSpinner.onItemSelectedListener = onSelectedAgent
+        }
 
         entryDateButton.setOnClickListener(clickOnEntryDate)
         validationButton.setOnClickListener(clickOnValidButton)
@@ -159,10 +168,25 @@ class EstateEditFragment(
         override fun onNothingSelected(parent: AdapterView<*>?) {}
     }
 
+    private val onSelectedAgent = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            agent = if (position == 0) { null }
+            else {
+                viewModel.getAgentListLiveData().value?.let {agentList -> agentList[position - 1] }
+            }
+        }
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
+    }
+
     private fun injectEstateToViews(estate: Estate) {
         entryDate = estate.entryDate
         entryDateButton.text = simpleDateFormat.format(Date(estate.entryDate))
-        spinner.setSelection(estate.type.ordinal + 1)
+        viewModel.getAgentListLiveData().value?.let { agentList ->
+            val agent = agentList.find { agent -> agent.id == estate.agentId }
+            val agentIndex = agentList.indexOf(agent)
+            agentSpinner.setSelection(agentIndex)
+        }
+        typeSpinner.setSelection(estate.type.ordinal + 1)
         priceEditText.setText(estate.price.toString())
         descriptionEditText.setText(estate.description)
         surfaceEditText.setText(estate.surface.toString())
@@ -188,15 +212,14 @@ class EstateEditFragment(
         datePickerDialog.show()
     }
 
-    private val datePickerDialogListener = object : DatePickerDialog.OnDateSetListener{
-        override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+    private val datePickerDialogListener =
+        DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             val entryDateCalendar = Calendar.getInstance()
             entryDateCalendar.set(year, month, dayOfMonth)
             val entryDateMillis = entryDateCalendar.timeInMillis
             entryDate = entryDateMillis
             entryDateButton.text = simpleDateFormat.format(Date(entryDateMillis))
         }
-    }
 
     private val clickOnValidButton = OnClickListener {
         if (formIsCompleted()) {
@@ -231,7 +254,7 @@ class EstateEditFragment(
                 status = status,
                 entryDate = entryDate ?: return@OnClickListener,
                 saleDate = null,
-                agent = "Agent"
+                agentId = agent?.id ?: return@OnClickListener
             )
 
             when (setting) {
@@ -252,6 +275,8 @@ class EstateEditFragment(
     private fun formIsCompleted(): Boolean {
         when {
             this.entryDate == null -> Toast.makeText(activity, resources.getString(R.string.edit_estate_entry_date_required), Toast.LENGTH_SHORT).show()
+            this.agent == null -> Toast.makeText(activity, resources.getString(R.string.edit_estate_agent_required), Toast.LENGTH_SHORT).show()
+            this.type == null -> Toast.makeText(activity, resources.getString(R.string.edit_estate_type_required), Toast.LENGTH_SHORT).show()
             picturesAdapter.currentList.isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_picture_required), Toast.LENGTH_SHORT).show()
             priceEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_price_required), Toast.LENGTH_SHORT).show()
             descriptionEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_description_required), Toast.LENGTH_SHORT).show()
@@ -262,7 +287,6 @@ class EstateEditFragment(
             schoolDistanceEditText.text.toString().isEmpty() -> Toast.makeText(activity, "School distance is empty", Toast.LENGTH_SHORT).show()
             shopDistanceEditText.text.toString().isEmpty() -> Toast.makeText(activity, "Shop distance is empty", Toast.LENGTH_SHORT).show()
             parkDistanceEditText.text.toString().isEmpty() -> Toast.makeText(activity, "Park distance is empty", Toast.LENGTH_SHORT).show()
-            this.type == null -> Toast.makeText(activity, resources.getString(R.string.edit_estate_type_required), Toast.LENGTH_SHORT).show()
             houseNumberEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_houseNumber_required), Toast.LENGTH_SHORT).show()
             streetEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_street_required), Toast.LENGTH_SHORT).show()
             zipCodeEditText.text.toString().isEmpty() -> Toast.makeText(activity, resources.getString(R.string.edit_estate_zipCode_required), Toast.LENGTH_SHORT).show()

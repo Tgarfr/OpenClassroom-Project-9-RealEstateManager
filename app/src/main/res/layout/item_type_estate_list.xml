@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/spinner_item_type_estate"
+        android:id="@+id/spinner_item_estate_type"
         style="@style/TextAppearance.Material3.BodyMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
