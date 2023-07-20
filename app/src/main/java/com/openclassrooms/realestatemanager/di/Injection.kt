@@ -21,11 +21,7 @@ import kotlinx.coroutines.launch
 class Injection private constructor(context: Context) {
 
     private val database: Database by lazy {
-        Room.databaseBuilder(
-            context.applicationContext,
-            Database::class.java,
-            Database.DATABASE_NAME
-        )
+        Room.databaseBuilder(context.applicationContext, Database::class.java, Database.DATABASE_NAME)
             .addCallback(prepopulateDatabase)
             .build()
     }

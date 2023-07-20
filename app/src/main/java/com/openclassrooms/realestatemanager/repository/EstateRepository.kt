@@ -13,6 +13,8 @@ class EstateRepository(private val estateApi: EstateApi) {
 
     fun getEstateListLiveData(): LiveData<List<Estate>> = estateListLiveData
 
+    fun getEstateListCursor() = estateApi.getEstateListCursor()
+
     fun addEstate(estate: Estate): Long {
         return estateApi.addEstate(estate)
     }
