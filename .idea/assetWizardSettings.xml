@@ -321,7 +321,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/crop_free/baseline_crop_free_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/check_circle/baseline_check_circle_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -331,7 +331,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="icon_estate_picture_default" />
+                            <entry key="color" value="87e764" />
+                            <entry key="outputName" value="baseline_check_circle_24" />
                           </map>
                         </option>
                       </PersistentState>

@@ -60,7 +60,7 @@
         android:textSize="16sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/sheet_estate_status"/>
+        tools:text="@string/sheet_estate_status"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_sheet_estate_pictures_recyclerview"
@@ -359,5 +359,15 @@
         map:liteMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_sheet_estate_sale_validate"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/sheet_estate_sale_validation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/estate_sheet_sale_validate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,62 +38,90 @@ class EstateSheetFragment(
     }
 
     private lateinit var viewModel: EstateSheetFragmentViewModel
+    private var estate: Estate? = null
+    private lateinit var adapter: EstatePicturesAdapter
     private lateinit var googleMap: GoogleMap
     private val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    private lateinit var entryDateTextView: TextView
+    private lateinit var statusTextView: TextView
+    private lateinit var descriptionTextView: TextView
+    private lateinit var surfaceTextView: TextView
+    private lateinit var numbersOfRoomsTextView: TextView
+    private lateinit var numbersOfBathroomsTextView: TextView
+    private lateinit var numbersOfBedroomsTextView: TextView
+    private lateinit var schoolDistanceEditText: TextView
+    private lateinit var shopDistanceEditText: TextView
+    private lateinit var parkDistanceEditText: TextView
+    private lateinit var locationTextView: TextView
+    private lateinit var validateSaleImageView: ImageView
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_sheet_estate, container, false)
         viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[EstateSheetFragmentViewModel::class.java]
+        initViews(view)
 
-        val entryDateTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_entry_date)
-        val statusTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_status)
-        val descriptionTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_description)
-        val surfaceTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_surface)
-        val numbersOfRoomsTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_rooms)
-        val numbersOfBathroomsTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_bathrooms)
-        val numbersOfBedroomsTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_bedrooms)
-        val schoolDistanceEditText: TextView = view.findViewById(R.id.fragment_sheet_estate_distance_school)
-        val shopDistanceEditText: TextView = view.findViewById(R.id.fragment_sheet_estate_distance_shop)
-        val parkDistanceEditText: TextView = view.findViewById(R.id.fragment_sheet_estate_distance_park)
-        val locationTextView: TextView = view.findViewById(R.id.fragment_sheet_estate_location)
+        viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate -> setEstate(estate)}
+
         view.findViewById<ImageView>(R.id.fragment_sheet_estate_edit_button).setOnClickListener {
             estateSheetFragmentListener.launchEstateEditFragment(viewModel.getSelectedEstateLiveData().value ?: return@setOnClickListener )
         }
 
-        val adapter = EstatePicturesAdapter(requireContext(), this)
+        adapter = EstatePicturesAdapter(requireContext(), this)
         val recyclerView = view.findViewById<RecyclerView>(R.id.fragment_sheet_estate_pictures_recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
-
-        viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate ->
-            if (estate != null) {
-                entryDateTextView.text = simpleDateFormat.format(Date(estate.entryDate))
-                statusTextView.text = estate.status.getString(resources)
-                descriptionTextView.text = estate.description
-                surfaceTextView.text = estate.surface.toString()
-                numbersOfRoomsTextView.text = estate.numberOfRooms.toString()
-                numbersOfBathroomsTextView.text = estate.numberOfBathrooms.toString()
-                numbersOfBedroomsTextView.text = estate.numberOfBedrooms.toString()
-                schoolDistanceEditText.text = estate.schoolDistance.toString()
-                shopDistanceEditText.text = estate.shopDistance.toString()
-                parkDistanceEditText.text = estate.parkDistance.toString()
-                locationTextView.text = viewModel.getLocationString(estate)
-                viewModel.getPictureListLiveData(estate.id).observe(viewLifecycleOwner) { pictureList -> adapter.submitList(pictureList) }
-                if (::googleMap.isInitialized) {
-                    onMapReady(this.googleMap)
-                }
-            }
-        }
 
         val mapView = view.findViewById<MapView>(R.id.fragment_sheet_estate_map)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
         return view
+    }
+
+    private fun initViews(view: View) {
+        entryDateTextView = view.findViewById(R.id.fragment_sheet_estate_entry_date)
+        statusTextView = view.findViewById(R.id.fragment_sheet_estate_status)
+        descriptionTextView = view.findViewById(R.id.fragment_sheet_estate_description)
+        surfaceTextView = view.findViewById(R.id.fragment_sheet_estate_surface)
+        numbersOfRoomsTextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_rooms)
+        numbersOfBathroomsTextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_bathrooms)
+        numbersOfBedroomsTextView = view.findViewById(R.id.fragment_sheet_estate_numbers_of_bedrooms)
+        schoolDistanceEditText = view.findViewById(R.id.fragment_sheet_estate_distance_school)
+        shopDistanceEditText = view.findViewById(R.id.fragment_sheet_estate_distance_shop)
+        parkDistanceEditText = view.findViewById(R.id.fragment_sheet_estate_distance_park)
+        locationTextView = view.findViewById(R.id.fragment_sheet_estate_location)
+        validateSaleImageView = view.findViewById(R.id.fragment_sheet_estate_sale_validate)
+    }
+
+    private fun setEstate(estate: Estate?) {
+        this.estate = estate
+        if (estate != null) {
+            entryDateTextView.text = simpleDateFormat.format(Date(estate.entryDate))
+            statusTextView.text = estate.status.getString(resources)
+            descriptionTextView.text = estate.description
+            surfaceTextView.text = estate.surface.toString()
+            numbersOfRoomsTextView.text = estate.numberOfRooms.toString()
+            numbersOfBathroomsTextView.text = estate.numberOfBathrooms.toString()
+            numbersOfBedroomsTextView.text = estate.numberOfBedrooms.toString()
+            schoolDistanceEditText.text = estate.schoolDistance.toString()
+            shopDistanceEditText.text = estate.shopDistance.toString()
+            parkDistanceEditText.text = estate.parkDistance.toString()
+            locationTextView.text = viewModel.getLocationString(estate)
+            viewModel.getPictureListLiveData(estate.id).observe(viewLifecycleOwner) { pictureList -> adapter.submitList(pictureList) }
+            if (::googleMap.isInitialized) {
+                onMapReady(this.googleMap)
+            }
+            when(estate.status) {
+                Estate.Status.AVAILABLE -> {
+                    validateSaleImageView.isGone = false
+                    validateSaleImageView.setOnClickListener(onClickSaleValidateIcon)
+                }
+                Estate.Status.SOLD -> {
+                    validateSaleImageView.isGone = true
+                }
+            }
+        }
     }
 
     override fun clickOnPicture(picture: Picture) {
@@ -113,6 +144,17 @@ class EstateSheetFragment(
                     .title(getString(R.string.map_position_estate)))
             }
         }
+    }
+
+    private val onClickSaleValidateIcon = OnClickListener {
+        val validationDialog = AlertDialog.Builder(requireContext())
+        validationDialog.setTitle(getString(R.string.sheet_estate_sale_validation))
+            .setMessage(getString(R.string.sheet_estate_sale_validation_ask))
+            .setPositiveButton(getString(R.string.sheet_estate_sale_yes)) { _, _ ->
+                estate?.let { viewModel.validateEstateSale(it) } }
+            .setNegativeButton(getString(R.string.sheet_estate_sale_no)) { _, _ -> }
+            .setCancelable(false)
+            .show()
     }
 
 }

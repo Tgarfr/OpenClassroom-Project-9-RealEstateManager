@@ -39,6 +39,10 @@
     <string name="sheet_estate_status">Available</string>
     <string name="sheet_estate_edit">Edit estate</string>
     <string name="sheet_estate_picture">Estate picture</string>
+    <string name="sheet_estate_sale_validation">Validation of the sale</string>
+    <string name="sheet_estate_sale_validation_ask">Has the estate been sold ?</string>
+    <string name="sheet_estate_sale_yes">Yes</string>
+    <string name="sheet_estate_sale_no">No</string>
 
     // Edit Estate
     <string name="edit_estate_edit">Edit estate</string>

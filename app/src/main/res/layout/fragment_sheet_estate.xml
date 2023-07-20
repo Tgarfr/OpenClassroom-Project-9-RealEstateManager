@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="@string/sheet_estate_status"
+        tools:text="@string/sheet_estate_status"
         android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -351,5 +351,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         map:liteMode="true" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_sheet_estate_sale_validate"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/sheet_estate_sale_validation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/estate_sheet_sale_validate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

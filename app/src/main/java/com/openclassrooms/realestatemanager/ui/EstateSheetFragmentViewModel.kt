@@ -7,6 +7,10 @@ import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.repository.PictureRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class EstateSheetFragmentViewModel(
     private val estateRepository: EstateRepository,
@@ -41,6 +45,38 @@ class EstateSheetFragmentViewModel(
             return "${estate.houseNumber} ${estate.street}\n${estate.additionalAddress}\n${estate.city}\n${estate.zipCode}\n${estate.country}"
         }
         return ""
+    }
+
+    fun validateEstateSale(estate: Estate) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val soldEstate = Estate(
+                id = estate.id,
+                type = estate.type,
+                price = estate.price,
+                surface = estate.surface,
+                numberOfRooms = estate.numberOfRooms,
+                numberOfBathrooms = estate.numberOfBathrooms,
+                numberOfBedrooms = estate.numberOfBedrooms,
+                schoolDistance = estate.schoolDistance,
+                shopDistance = estate.shopDistance,
+                parkDistance = estate.parkDistance,
+                description = estate.description,
+                houseNumber = estate.houseNumber,
+                street = estate.street,
+                zipCode = estate.zipCode,
+                city = estate.city,
+                country = estate.country,
+                additionalAddress = estate.additionalAddress,
+                latitude = estate.latitude,
+                longitude = estate.longitude,
+                status = Estate.Status.SOLD,
+                entryDate = estate.entryDate,
+                saleDate = Calendar.getInstance().timeInMillis,
+                agent = estate.agent
+            )
+            estateRepository.updateEstate(soldEstate)
+            estateRepository.setSelectedEstateLiveData(soldEstate)
+        }
     }
 
 }
