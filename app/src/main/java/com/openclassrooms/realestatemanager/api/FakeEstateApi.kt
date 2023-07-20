@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.api
 
+import android.database.Cursor
+import android.database.MatrixCursor
 import com.openclassrooms.realestatemanager.model.Estate
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -10,6 +12,8 @@ class FakeEstateApi : EstateApi {
     private var estateListFlow = MutableStateFlow(estateList.toList())
 
     override fun getEstateListFlow() = estateListFlow
+
+    override fun getEstateListCursor(): Cursor = getCursorFromEstateList(estateListFlow.value)
 
     override fun addEstate(estate: Estate): Long {
         mutableEstateList.add(estate)
@@ -133,6 +137,64 @@ class FakeEstateApi : EstateApi {
                 agentId = 2L
             )
         )
+    }
+
+    private fun getCursorFromEstateList(estateList: List<Estate>): Cursor {
+        val columnNames = arrayOf(
+            "id",
+            "type",
+            "price",
+            "surface",
+            "numberOfRooms",
+            "numberOfBathrooms",
+            "numberOfBedrooms",
+            "description",
+            "houseNumber",
+            "street",
+            "additionalAddress",
+            "zipCode",
+            "city",
+            "country",
+            "latitude",
+            "longitude",
+            "status",
+            "entryDate",
+            "saleDate",
+            "schoolDistance",
+            "shopDistance",
+            "parkDistance",
+            "agent"
+        )
+        val cursor = MatrixCursor(columnNames)
+        estateList.forEach { estate ->
+            val rowData = arrayOf(
+                estate.id,
+                estate.type,
+                estate.price,
+                estate.surface,
+                estate.numberOfRooms,
+                estate.numberOfBathrooms,
+                estate.numberOfBedrooms,
+                estate.schoolDistance,
+                estate.shopDistance,
+                estate.parkDistance,
+                estate.description,
+                estate.houseNumber,
+                estate.street,
+                estate.zipCode,
+                estate.city,
+                estate.country,
+                estate.additionalAddress,
+                estate.latitude,
+                estate.longitude,
+                estate.status,
+                estate.entryDate,
+                estate.saleDate,
+                estate.agentId
+            )
+            cursor.addRow(rowData)
+        }
+        return cursor
     }
 
 }
