@@ -23,6 +23,6 @@ class EstateRepository(private val estateApi: EstateApi) {
 
     fun getSelectedEstateLiveData(): LiveData<Estate> = selectedEstateLiveData
 
-    fun setSelectedEstateLiveData(estate: Estate) { selectedEstateLiveData.value = estate }
+    fun setSelectedEstateLiveData(estate: Estate) { selectedEstateLiveData.postValue(estate) }
 
 }

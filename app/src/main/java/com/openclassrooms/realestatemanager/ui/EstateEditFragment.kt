@@ -53,6 +53,7 @@ class EstateEditFragment(
     private lateinit var picturesAdapter: EstatePicturesAdapter
     private var id: Long? = null
     private var entryDate: Long? = null
+    private var status = Estate.Status.AVAILABLE
     private var type: Estate.Type? = null
     private val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
 
@@ -177,6 +178,7 @@ class EstateEditFragment(
         zipCodeEditText.setText(estate.zipCode)
         cityEditText.setText(estate.city)
         countryEditText.setText(estate.country)
+        status = estate.status
     }
 
     private val clickOnEntryDate = OnClickListener {
@@ -226,7 +228,7 @@ class EstateEditFragment(
                 country = country,
                 latitude = position?.latitude,
                 longitude = position?.longitude,
-                status = Estate.Status.AVAILABLE,
+                status = status,
                 entryDate = entryDate ?: return@OnClickListener,
                 saleDate = null,
                 agent = "Agent"
