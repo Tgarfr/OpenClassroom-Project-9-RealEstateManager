@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,6 +27,7 @@ import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -55,6 +57,8 @@ class EstateSheetFragment(
     private lateinit var parkDistanceEditText: TextView
     private lateinit var locationTextView: TextView
     private lateinit var validateSaleImageView: ImageView
+    private lateinit var saleDateTitleTextView: TextView
+    private lateinit var saleDateTextView: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_sheet_estate, container, false)
@@ -92,6 +96,8 @@ class EstateSheetFragment(
         parkDistanceEditText = view.findViewById(R.id.fragment_sheet_estate_distance_park)
         locationTextView = view.findViewById(R.id.fragment_sheet_estate_location)
         validateSaleImageView = view.findViewById(R.id.fragment_sheet_estate_sale_validate)
+        saleDateTitleTextView = view.findViewById(R.id.fragment_sheet_estate_title_sale_date)
+        saleDateTextView = view.findViewById(R.id.fragment_sheet_estate_sale_date)
     }
 
     private fun setEstate(estate: Estate?) {
@@ -116,9 +122,15 @@ class EstateSheetFragment(
                 Estate.Status.AVAILABLE -> {
                     validateSaleImageView.isGone = false
                     validateSaleImageView.setOnClickListener(onClickSaleValidateIcon)
+                    saleDateTitleTextView.isGone = true
+                    saleDateTextView.isGone = true
+
                 }
                 Estate.Status.SOLD -> {
                     validateSaleImageView.isGone = true
+                    saleDateTitleTextView.isGone = false
+                    saleDateTextView.isGone = false
+                    estate.saleDate?.let {saleDateTextView.text = simpleDateFormat.format(Date(it))}
                 }
             }
         }
@@ -150,11 +162,24 @@ class EstateSheetFragment(
         val validationDialog = AlertDialog.Builder(requireContext())
         validationDialog.setTitle(getString(R.string.sheet_estate_sale_validation))
             .setMessage(getString(R.string.sheet_estate_sale_validation_ask))
-            .setPositiveButton(getString(R.string.sheet_estate_sale_yes)) { _, _ ->
-                estate?.let { viewModel.validateEstateSale(it) } }
+            .setPositiveButton(getString(R.string.sheet_estate_sale_yes)) { _, _ -> pickSaleDate() }
             .setNegativeButton(getString(R.string.sheet_estate_sale_no)) { _, _ -> }
             .setCancelable(false)
             .show()
     }
+
+    private fun pickSaleDate() {
+        val actualDate = Calendar.getInstance()
+        val datePickerDialog = DatePickerDialog(requireContext(), datePickerDialogListener, actualDate.get(
+            Calendar.YEAR), actualDate.get(Calendar.MONTH), actualDate.get(Calendar.DAY_OF_MONTH))
+        datePickerDialog.show()
+    }
+
+    private val datePickerDialogListener =
+        DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            val saleDate = Calendar.getInstance()
+            saleDate.set(year, month, dayOfMonth)
+            estate?.let { viewModel.validateEstateSale(it, saleDate.timeInMillis) }
+        }
 
 }
