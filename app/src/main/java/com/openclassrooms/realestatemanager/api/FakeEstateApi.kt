@@ -55,7 +55,7 @@ class FakeEstateApi : EstateApi {
                 status = Estate.Status.AVAILABLE,
                 entryDate = 1672531200000,
                 saleDate = null,
-                agent = "Mr Bob"
+                agentId = 0L
             ),
             Estate(
                 id = 3,
@@ -80,7 +80,7 @@ class FakeEstateApi : EstateApi {
                 status = Estate.Status.AVAILABLE,
                 entryDate = 1675209600000,
                 saleDate = null,
-                agent = "Mr Martin"
+                agentId = 2L
             ),
             Estate(
                 id = 4,
@@ -105,7 +105,7 @@ class FakeEstateApi : EstateApi {
                 status = Estate.Status.SOLD,
                 entryDate = 1677628800000,
                 saleDate = null,
-                agent = "Mr Bob"
+                agentId = 3L
             ),
             Estate(
                 id = 5,
@@ -130,7 +130,7 @@ class FakeEstateApi : EstateApi {
                 status = Estate.Status.AVAILABLE,
                 entryDate = 1680307200000,
                 saleDate = null,
-                agent = "Mr Bob"
+                agentId = 2L
             )
         )
     }

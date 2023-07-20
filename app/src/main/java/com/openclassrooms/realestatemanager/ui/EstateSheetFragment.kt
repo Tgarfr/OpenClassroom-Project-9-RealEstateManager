@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.di.ViewModelFactory
+import com.openclassrooms.realestatemanager.model.Agent
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
 import java.text.SimpleDateFormat
@@ -41,11 +42,13 @@ class EstateSheetFragment(
 
     private lateinit var viewModel: EstateSheetFragmentViewModel
     private var estate: Estate? = null
+    private var agent: Agent? = null
     private lateinit var adapter: EstatePicturesAdapter
     private lateinit var googleMap: GoogleMap
     private val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
 
     private lateinit var entryDateTextView: TextView
+    private lateinit var agentTextView: TextView
     private lateinit var statusTextView: TextView
     private lateinit var descriptionTextView: TextView
     private lateinit var surfaceTextView: TextView
@@ -85,6 +88,7 @@ class EstateSheetFragment(
 
     private fun initViews(view: View) {
         entryDateTextView = view.findViewById(R.id.fragment_sheet_estate_entry_date)
+        agentTextView = view.findViewById(R.id.fragment_sheet_estate_agent)
         statusTextView = view.findViewById(R.id.fragment_sheet_estate_status)
         descriptionTextView = view.findViewById(R.id.fragment_sheet_estate_description)
         surfaceTextView = view.findViewById(R.id.fragment_sheet_estate_surface)
@@ -104,6 +108,8 @@ class EstateSheetFragment(
         this.estate = estate
         if (estate != null) {
             entryDateTextView.text = simpleDateFormat.format(Date(estate.entryDate))
+            agent = viewModel.getAgentListLiveData().value?.let { agentList -> agentList.find { agent -> agent.id == estate.agentId } }
+            agentTextView.text = agent?.name
             statusTextView.text = estate.status.getString(resources)
             descriptionTextView.text = estate.description
             surfaceTextView.text = estate.surface.toString()

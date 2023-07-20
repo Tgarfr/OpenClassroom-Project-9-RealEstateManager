@@ -3,7 +3,6 @@
     <string name="app_name">Real Estate Manager</string>
 
     // Estate
-    <string name="estate_type_not_selected">Select a type</string>
     <string name="estate_type_house">House</string>
     <string name="estate_type_duplex">Duplex</string>
     <string name="estate_type_flat">Flat</string>
@@ -54,6 +53,7 @@
     <string name="edit_estate_added">Estate added</string>
     <string name="edit_estate_entry_date">Entry Date : </string>
     <string name="edit_estate_type">Type :</string>
+    <string name="edit_estate_agent">Agent :</string>
     <string name="edit_estate_price">Price :</string>
     <string name="edit_estate_description">Description :</string>
     <string name="edit_estate_surface">Surface :</string>
@@ -75,6 +75,7 @@
     <string name="edit_estate_location">Location :</string>
     <string name="edit_estate_entry_date_required">Entry date is required</string>
     <string name="edit_estate_type_required">Type is required</string>
+    <string name="edit_estate_agent_required">Agent is required</string>
     <string name="edit_estate_picture_required">Picture is required</string>
     <string name="edit_estate_price_required">Price is required</string>
     <string name="edit_estate_description_required">Description is required</string>
@@ -90,6 +91,8 @@
     <string name="edit_estate_zipCode_required">Zip code is required</string>
     <string name="edit_estate_city_required">City is required</string>
     <string name="edit_estate_country_required">Country is required</string>
+    <string name="estate_type_not_selected">Select a type</string>
+    <string name="estate_agent_not_selected">Select a agent</string>
 
     // Picture
     <string name="picture">Picture</string>

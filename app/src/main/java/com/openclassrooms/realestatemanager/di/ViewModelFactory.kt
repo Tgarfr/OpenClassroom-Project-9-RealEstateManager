@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.di
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.openclassrooms.realestatemanager.repository.AgentRepository
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.repository.GeocodingRepository
 import com.openclassrooms.realestatemanager.repository.PictureRepository
@@ -15,6 +16,7 @@ class ViewModelFactory private constructor(context: Context): ViewModelProvider.
     private val pictureRepository: PictureRepository = Injection.getInstance(context).pictureRepository
     private val searchRepository: SearchRepository = Injection.getInstance(context).searchRepository
     private val geocodingRepository: GeocodingRepository = Injection.getInstance(context).geocodingRepository
+    private val agentRepository: AgentRepository = Injection.getInstance(context).agentRepository
 
     companion object {
         @Volatile
@@ -35,10 +37,10 @@ class ViewModelFactory private constructor(context: Context): ViewModelProvider.
             return EstateListFragmentViewModel(estateRepository, searchRepository, pictureRepository, geocodingRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateSheetFragmentViewModel::class.java)) {
-            return EstateSheetFragmentViewModel(estateRepository, pictureRepository) as T
+            return EstateSheetFragmentViewModel(estateRepository, pictureRepository, agentRepository) as T
         }
         if (modelClass.isAssignableFrom(EstateEditFragmentViewModel::class.java)) {
-            return EstateEditFragmentViewModel(estateRepository, pictureRepository, geocodingRepository) as T
+            return EstateEditFragmentViewModel(estateRepository, pictureRepository, geocodingRepository, agentRepository) as T
         }
         if (modelClass.isAssignableFrom(PictureActivityViewModel::class.java)) {
             return PictureActivityViewModel(pictureRepository) as T

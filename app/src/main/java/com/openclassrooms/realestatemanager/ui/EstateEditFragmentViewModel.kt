@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.openclassrooms.realestatemanager.model.Agent
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.Picture
+import com.openclassrooms.realestatemanager.repository.AgentRepository
 import com.openclassrooms.realestatemanager.repository.EstateRepository
 import com.openclassrooms.realestatemanager.repository.GeocodingRepository
 import com.openclassrooms.realestatemanager.repository.PictureRepository
@@ -17,7 +19,8 @@ import kotlinx.coroutines.launch
 class EstateEditFragmentViewModel(
     private val estateRepository: EstateRepository,
     private val pictureRepository: PictureRepository,
-    private val geocodingRepository: GeocodingRepository
+    private val geocodingRepository: GeocodingRepository,
+    private val agentRepository: AgentRepository
 ) : ViewModel() {
 
     private enum class Setting { ADD, EDIT }
@@ -29,6 +32,8 @@ class EstateEditFragmentViewModel(
         setting = Setting.EDIT
         return estateRepository.getSelectedEstateLiveData()
     }
+
+    fun getAgentListLiveData(): LiveData<List<Agent>> = agentRepository.getAgentListLiveData()
 
     fun getPictureListLiveData(estateId: Long): LiveData<List<Picture>> {
         return when(setting) {
