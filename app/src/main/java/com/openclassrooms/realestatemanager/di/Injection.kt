@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.openclassrooms.realestatemanager.api.Database
 import com.openclassrooms.realestatemanager.api.FakeEstateApi
+import com.openclassrooms.realestatemanager.api.GeocodingAndroidApi
 import com.openclassrooms.realestatemanager.api.PictureStorage
 import com.openclassrooms.realestatemanager.repository.AgentRepository
 import com.openclassrooms.realestatemanager.repository.EstateRepository
@@ -32,11 +33,12 @@ class Injection private constructor(context: Context) {
     private val estateApi by lazy { database.estateDao() }
     private val pictureDatabaseApi by lazy { database.pictureDao() }
     private val pictureStorageApi by lazy { PictureStorage(context) }
+    private val geocodingApi by lazy { GeocodingAndroidApi(context) }
 
     val estateRepository by lazy { EstateRepository(estateApi) }
     val pictureRepository by lazy { PictureRepository(pictureDatabaseApi, pictureStorageApi) }
     val searchRepository by lazy { SearchRepository() }
-    val geocodingRepository by lazy { GeocodingRepository(context) }
+    val geocodingRepository by lazy { GeocodingRepository(geocodingApi) }
     val agentRepository by lazy { AgentRepository() }
 
     companion object {

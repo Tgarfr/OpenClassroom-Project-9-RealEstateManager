@@ -120,7 +120,7 @@ class EstateSheetFragment(
             shopDistanceEditText.text = estate.shopDistance.toString()
             parkDistanceEditText.text = estate.parkDistance.toString()
             locationTextView.text = viewModel.getLocationString(estate)
-            viewModel.getPictureListLiveData(estate.id).observe(viewLifecycleOwner) { pictureList -> adapter.submitList(pictureList) }
+            viewModel.getPictureListLiveDataByEstateId(estate.id).observe(viewLifecycleOwner) { pictureList -> adapter.submitList(pictureList) }
             if (::googleMap.isInitialized) {
                 onMapReady(this.googleMap)
             }

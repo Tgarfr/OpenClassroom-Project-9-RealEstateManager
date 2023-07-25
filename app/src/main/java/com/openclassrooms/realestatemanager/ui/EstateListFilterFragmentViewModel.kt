@@ -9,6 +9,6 @@ class EstateListFilterFragmentViewModel(private val searchRepository: SearchRepo
 
     fun getSearchCriteriaLiveData(): LiveData<List<SearchCriteria>> = searchRepository.getSearchCriteriaLiveData()
 
-    fun setSearchCriteriaLiveData(searchCriteria: List<SearchCriteria>) { searchRepository.setSearchCriteriaLiveData(searchCriteria) }
+    fun setSearchCriteria(searchCriteria: List<SearchCriteria>) { searchRepository.setSearchCriteria(searchCriteria) }
 
 }
