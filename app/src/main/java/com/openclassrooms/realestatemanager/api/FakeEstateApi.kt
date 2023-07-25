@@ -74,7 +74,7 @@ class FakeEstateApi : EstateApi {
                 zipCode = "10001",
                 city = "Montauk",
                 country = "United States",
-                additionalAddress = "Apt 6/7A",
+                additionalAddress = null,
                 latitude = 47.796406482918876,
                 longitude = 2.125695038996438,
                 status = Estate.Status.AVAILABLE,

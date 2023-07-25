@@ -12,8 +12,8 @@ class PictureActivityViewModel(
     fun getPictureListByEstateIdLiveData(estateId: Long): LiveData<List<Picture>> =
         pictureRepository.getPictureListByEstateIdLiveData(estateId)
 
-    fun getPicture(estateId: Long): Picture? =
-        pictureRepository.getPictureListLiveData().value?.find { picture ->  picture.id == estateId }
+    fun getPictureById(pictureId: Long): Picture? =
+        pictureRepository.getPictureListLiveData().value?.find { picture ->  picture.id == pictureId }
 
     fun deletePicture(picture: Picture) {
         pictureRepository.deletePicture(picture)

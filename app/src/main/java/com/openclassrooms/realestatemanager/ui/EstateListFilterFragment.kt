@@ -170,7 +170,7 @@ class EstateListFilterFragment(
             searchCriteria.add(SearchCriteria.Sector(sectorEditText.text.toString()))
 
         type?.let { type -> searchCriteria.add(SearchCriteria.Type(type)) }
-        viewModel.setSearchCriteriaLiveData(searchCriteria)
+        viewModel.setSearchCriteria(searchCriteria)
 
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             estateListFilterFragmentListener.launchEstateListFragment()

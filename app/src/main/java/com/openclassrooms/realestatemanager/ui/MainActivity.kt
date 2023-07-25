@@ -49,12 +49,12 @@ class MainActivity :
     }
 
     override fun launchEstateSheetFragment(estate: Estate) {
-        viewModel.setSelectedEstateLiveData(estate)
+        viewModel.setSelectedEstate(estate)
         replaceFragment(EstateSheetFragment(this))
     }
 
     override fun launchEstateEditFragment(estate: Estate) {
-        viewModel.setSelectedEstateLiveData(estate)
+        viewModel.setSelectedEstate(estate)
         replaceFragment(EstateEditFragment(EstateEditFragment.Setting.EDIT, this))
     }
 

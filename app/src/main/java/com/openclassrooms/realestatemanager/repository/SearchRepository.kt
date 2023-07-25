@@ -10,6 +10,6 @@ class SearchRepository {
 
     fun getSearchCriteriaLiveData(): LiveData<List<SearchCriteria>> = searchCriteriaLiveData
 
-    fun setSearchCriteriaLiveData(searchCriteria: List<SearchCriteria>) { searchCriteriaLiveData.value = searchCriteria }
+    fun setSearchCriteria(searchCriteria: List<SearchCriteria>) { searchCriteriaLiveData.value = searchCriteria }
 
 }

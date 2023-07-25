@@ -21,7 +21,7 @@ class EstateSheetFragmentViewModel(
 
     private val estateListObserver: Observer<List<Estate>> = Observer { estateList ->
         if (estateRepository.getSelectedEstateLiveData().value == null && estateList.isNotEmpty()) {
-            estateRepository.setSelectedEstateLiveData(estateList[0])
+            estateRepository.setSelectedEstate(estateList[0])
         }
     }
 
@@ -38,7 +38,7 @@ class EstateSheetFragmentViewModel(
 
     fun getAgentListLiveData(): LiveData<List<Agent>> = agentRepository.getAgentListLiveData()
 
-    fun getPictureListLiveData(estateId: Long): LiveData<List<Picture>> =
+    fun getPictureListLiveDataByEstateId(estateId: Long): LiveData<List<Picture>> =
         pictureRepository.getPictureListByEstateIdLiveData(estateId)
 
     fun getLocationString(estate: Estate?): String {
@@ -79,7 +79,7 @@ class EstateSheetFragmentViewModel(
                 agentId = estate.agentId
             )
             estateRepository.updateEstate(soldEstate)
-            estateRepository.setSelectedEstateLiveData(soldEstate)
+            estateRepository.setSelectedEstate(soldEstate)
         }
     }
 

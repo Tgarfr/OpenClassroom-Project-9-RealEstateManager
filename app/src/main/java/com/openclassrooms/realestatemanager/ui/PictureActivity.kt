@@ -34,7 +34,7 @@ class PictureActivity: AppCompatActivity() {
         initViews()
 
         intent.extras?.getLong(BUNDLE_PICTURE_ID_KEY)?.let { pictureId ->
-            viewModel.getPicture(pictureId)?.let { picture ->
+            viewModel.getPictureById(pictureId)?.let { picture ->
                 updatePicture(picture) }
         } ?: finish()
 

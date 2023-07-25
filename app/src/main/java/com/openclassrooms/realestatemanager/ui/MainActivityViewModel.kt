@@ -6,8 +6,8 @@ import com.openclassrooms.realestatemanager.repository.EstateRepository
 
 class MainActivityViewModel(private val estateRepository: EstateRepository): ViewModel() {
 
-    fun setSelectedEstateLiveData(estate: Estate) {
-        estateRepository.setSelectedEstateLiveData(estate)
+    fun setSelectedEstate(estate: Estate) {
+        estateRepository.setSelectedEstate(estate)
     }
 
 }
