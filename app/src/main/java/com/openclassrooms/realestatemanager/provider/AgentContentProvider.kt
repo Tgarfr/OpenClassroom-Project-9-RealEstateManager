@@ -5,26 +5,26 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import com.openclassrooms.realestatemanager.di.Injection
-import com.openclassrooms.realestatemanager.repository.EstateRepository
+import com.openclassrooms.realestatemanager.repository.AgentRepository
 
-class EstateContentProvider: ContentProvider() {
+class AgentContentProvider: ContentProvider() {
 
-    private lateinit var estateRepository: EstateRepository
+    private lateinit var agentRepository: AgentRepository
 
     companion object {
-        const val AUTHORITY = "com.openclassrooms.realestatemanager.estate"
-        const val TABLE_NAME = "estate"
+        const val AUTHORITY = "com.openclassrooms.realestatemanager.agent"
+        const val TABLE_NAME = "agent"
         val URI_ITEM: Uri = Uri.parse("content://$AUTHORITY/$TABLE_NAME")
     }
 
     override fun onCreate(): Boolean {
         val context = context ?: return false
-        estateRepository = Injection.getInstance(context).estateRepository
+        agentRepository = Injection.getInstance(context).agentRepository
         return true
     }
 
     override fun query(uri: Uri, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor =
-        estateRepository.getEstateListCursor()
+        agentRepository.getAgentListCursor()
 
     override fun getType(uri: Uri): String = "vnd.android.cursor.item/$AUTHORITY.$TABLE_NAME"
 

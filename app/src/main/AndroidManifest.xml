@@ -35,8 +35,13 @@
             android:value="${MAPS_API_KEY}"
             />
         <provider
-            android:authorities="com.openclassrooms.realestatemanager"
+            android:authorities="com.openclassrooms.realestatemanager.estate"
             android:name=".provider.EstateContentProvider"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
+        <provider
+            android:authorities="com.openclassrooms.realestatemanager.agent"
+            android:name=".provider.AgentContentProvider"
             android:exported="true"
             tools:ignore="ExportedContentProvider" />
     </application>
