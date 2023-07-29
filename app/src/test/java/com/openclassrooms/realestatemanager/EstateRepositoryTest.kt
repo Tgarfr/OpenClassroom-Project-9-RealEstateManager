@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager
 
+import android.database.Cursor
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.openclassrooms.realestatemanager.api.EstateApi
 import com.openclassrooms.realestatemanager.api.FakeEstateApi
@@ -48,6 +49,19 @@ class EstateRepositoryTest {
         // Then
         val actualEstateList = LiveDataTestUtils.getValue(actualEstateListLiveData)
         Assert.assertEquals(expectedEstateList, actualEstateList)
+    }
+
+    @Test
+    fun getEstateListCursorTest() {
+        // Given
+        val expectedEstateListCursor: Cursor = mockk()
+        every { estateRepository.getEstateListCursor() } returns expectedEstateListCursor
+
+        // When
+        val actualEstateListCursor = estateRepository.getEstateListCursor()
+
+        // Then
+        Assert.assertEquals(expectedEstateListCursor, actualEstateListCursor)
     }
 
     @Test

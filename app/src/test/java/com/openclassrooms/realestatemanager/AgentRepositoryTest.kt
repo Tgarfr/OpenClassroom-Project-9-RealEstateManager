@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager
 
+import android.database.Cursor
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.openclassrooms.realestatemanager.api.AgentApi
@@ -45,6 +46,19 @@ class AgentRepositoryTest {
         // Then
         val actualAgentList = LiveDataTestUtils.getValue(actualAgentListLiveData)
         Assert.assertEquals(expectedAgentList, actualAgentList)
+    }
+
+    @Test
+    fun getAgentListCursorTest() {
+        // Given
+        val expectedAgentListCursor: Cursor = mockk()
+        every { agentRepository.getAgentListCursor() } returns expectedAgentListCursor
+
+        // When
+        val actualAgentListCursor = agentRepository.getAgentListCursor()
+
+        // Then
+        Assert.assertEquals(expectedAgentListCursor, actualAgentListCursor)
     }
 
     private val testAgentList = listOf(
