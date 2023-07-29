@@ -5,6 +5,7 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Build
+import com.openclassrooms.realestatemanager.utils.Utils
 
 class GeocodingAndroidApi(private val context: Context): GeocodingApi {
 
@@ -14,6 +15,7 @@ class GeocodingAndroidApi(private val context: Context): GeocodingApi {
     }
 
     override fun geocodeAddress(addressString: String): Location? {
+        if (!Utils.isInternetAvailable(context)) return null
         var location: Location? = null
         val geocoder = Geocoder(context)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
