@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,10 +18,9 @@ import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
 import com.openclassrooms.realestatemanager.model.SearchCriteria
 
-class EstateListFilterFragment(
-    private val estateListFilterFragmentListener: EstateListFilterFragmentListener
-): Fragment() {
+class EstateListFilterFragment: Fragment() {
 
+    private lateinit var estateListFilterFragmentListener: EstateListFilterFragmentListener
     private lateinit var viewModel: EstateListFilterFragmentViewModel
     private lateinit var typeSpinner: Spinner
     private var type: Estate.Type? = null
@@ -61,6 +61,15 @@ class EstateListFilterFragment(
         view.findViewById<Button>(R.id.fragment_filter_list_estate_button_search).setOnClickListener(onClickSearchButton)
 
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (activity is EstateListFilterFragmentListener) {
+            estateListFilterFragmentListener = activity as EstateListFilterFragmentListener
+        } else {
+            throw ClassCastException(activity.toString() + "must implement EstateListFilterFragment.EstateListFilterFragmentListener")
+        }
     }
 
     private fun initView(view: View) {

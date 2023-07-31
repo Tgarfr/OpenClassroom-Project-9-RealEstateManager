@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.ui
 import android.Manifest
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -43,12 +44,11 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class EstateEditFragment(
-    private val setting: Setting,
-    private val estateEditFragmentListener: EstateEditFragmentListener
-    ) : Fragment() {
+class EstateEditFragment : Fragment() {
 
-    enum class Setting { ADD, EDIT }
+    private var setting = Setting.ADD
+    private lateinit var estateEditFragmentListener: EstateEditFragmentListener
+    enum class Setting(val value: Int) { ADD(0), EDIT(1) }
     private lateinit var viewModel: EstateEditFragmentViewModel
     private lateinit var picturesAdapter: EstatePicturesAdapter
     private var id: Long? = null
@@ -83,15 +83,34 @@ class EstateEditFragment(
     }
 
     companion object {
+        const val ESTATE_EDIT_FRAGMENT_SETTING = "setting"
         private const val CACHE_PICTURE_NAME = "cachePicture.jpg"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_edit_estate, container, false)
+
+        val args = arguments
+        if (args != null && args.containsKey(ESTATE_EDIT_FRAGMENT_SETTING)) {
+            when (args.getInt(ESTATE_EDIT_FRAGMENT_SETTING)) {
+                0 -> setting = Setting.ADD
+                1 -> setting = Setting.EDIT
+            }
+        }
+
         viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[EstateEditFragmentViewModel::class.java]
         initViews(view)
         initData(view)
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (activity is EstateEditFragmentListener) {
+            estateEditFragmentListener = activity as EstateEditFragmentListener
+        } else {
+            throw ClassCastException(activity.toString() + "must implement EstateEditFragment.EstateEditFragmentListener")
+        }
     }
 
     private fun initViews(view: View) {

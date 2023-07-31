@@ -1,574 +1,586 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_entry_date"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_button_entry_date"
-        android:text="@string/edit_estate_entry_date"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_button_entry_date"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_button_entry_date" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/fragment_edit_estate_button_entry_date"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_entry_date"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="20/07/2023" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_type"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_spinner_type"
-        android:text="@string/edit_estate_type"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_spinner_type"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_spinner_type" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/fragment_edit_estate_spinner_agent"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_button_entry_date"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/fragment_edit_estate_spinner_type"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_type"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_button_entry_date" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_price"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_price"
-        android:text="@string/edit_estate_price"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_price"
-        app:layout_constraintRight_toLeftOf="@id/fragment_edit_estate_price"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_price" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_price"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:autofillHints=""
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_spinner_type"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_spinner_type" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_edit_estate_button_add_picture"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
-        android:contentDescription="@string/edit_estate_add_picture"
-        android:src="@drawable/icon_edit_estate_add_picture"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_price" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_edit_estate_button_take_picture"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
-        android:contentDescription="@string/edit_estate_take_picture"
-        android:src="@drawable/icon_edit_estate_take_picture"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_button_add_picture"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_button_add_picture" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_sheet_estate_pictures_recyclerview"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_button_add_picture"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_button_take_picture"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_button_add_picture"
-        tools:listitem="@layout/item_estate_list" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_description"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_description"
-        android:text="@string/edit_estate_description"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_button_add_picture" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_description"
-        style="@style/TextAppearance.Material3.BodyMedium"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:inputType="text"
-        android:textSize="12sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_title_description" />
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_edit_estate_icon_surface"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/edit_estate_surface"
-        android:padding="5dp"
-        android:src="@drawable/icon_estate_surface"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_description" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_surface"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_surface"
-        android:text="@string/edit_estate_surface"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_surface"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_surface"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_surface" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_entry_date"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_button_entry_date"
+                android:text="@string/edit_estate_entry_date"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_button_entry_date"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_button_entry_date" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_surface"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:inputType="numberDecimal"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_surface"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_surface"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_surface" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragment_edit_estate_button_entry_date"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_entry_date"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="20/07/2023" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_sheet_estate_surface_unit"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_estate_surface_unit"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_surface"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_surface"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_surface" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_type"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_spinner_type"
+                android:text="@string/edit_estate_type"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_spinner_type"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_spinner_type" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_edit_estate_icon_number_of_rooms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:contentDescription="@string/edit_estate_numbers_of_rooms"
-        android:padding="5dp"
-        android:src="@drawable/icon_estate_room"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_surface" />
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/fragment_edit_estate_spinner_agent"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_button_entry_date"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_number_of_rooms"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_number_of_rooms"
-        android:text="@string/edit_estate_numbers_of_rooms"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_rooms"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_number_of_rooms"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_rooms" />
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/fragment_edit_estate_spinner_type"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_type"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_button_entry_date" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_number_of_rooms"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:inputType="number"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_rooms"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_number_of_bathrooms"
-        app:layout_constraintRight_toRightOf="@id/fragment_edit_estate_number_of_bathrooms"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_title_number_of_rooms" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_price"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_price"
+                android:text="@string/edit_estate_price"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_price"
+                app:layout_constraintRight_toLeftOf="@id/fragment_edit_estate_price"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_price" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_edit_estate_icon_number_of_bathrooms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:contentDescription="@string/edit_estate_numbers_of_bathrooms"
-        android:padding="5dp"
-        android:src="@drawable/icon_estate_bathroom"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_number_of_rooms" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_price"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:autofillHints=""
+                android:inputType="numberDecimal"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_spinner_type"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_spinner_type" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_number_of_bathrooms"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_number_of_bathrooms"
-        android:text="@string/edit_estate_numbers_of_bathrooms"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_bathrooms"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_number_of_bathrooms"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_bathrooms" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_edit_estate_button_add_picture"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:contentDescription="@string/edit_estate_add_picture"
+                android:src="@drawable/icon_edit_estate_add_picture"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_price" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_number_of_bathrooms"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:inputType="number"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_bathrooms"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_number_of_bathrooms"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_bathrooms" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_edit_estate_button_take_picture"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:contentDescription="@string/edit_estate_take_picture"
+                android:src="@drawable/icon_edit_estate_take_picture"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_button_add_picture"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_button_add_picture" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_edit_estate_icon_number_of_bedrooms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:contentDescription="@string/edit_estate_numbers_of_bedrooms"
-        android:padding="5dp"
-        android:src="@drawable/icon_estate_bedroom"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_number_of_bathrooms" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_sheet_estate_pictures_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_button_add_picture"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_button_take_picture"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_button_add_picture"
+                tools:listitem="@layout/item_estate_list" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_number_of_bedrooms"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_number_of_bedrooms"
-        android:text="@string/edit_estate_numbers_of_bedrooms"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_bedrooms"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_number_of_bedrooms"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_bedrooms" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_description"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_description"
+                android:text="@string/edit_estate_description"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_button_add_picture" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_number_of_bedrooms"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:inputType="number"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_bedrooms"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_number_of_bathrooms"
-        app:layout_constraintRight_toRightOf="@id/fragment_edit_estate_number_of_bathrooms"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_bedrooms" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_description"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="text"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_title_description" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_edit_estate_icon_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:contentDescription="@string/edit_estate_house_number"
-        android:padding="5dp"
-        android:src="@drawable/icon_estate_location"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_number_of_bedrooms" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_edit_estate_icon_surface"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/edit_estate_surface"
+                android:padding="5dp"
+                android:src="@drawable/icon_estate_surface"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_description" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_house_number"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_house_number"
-        android:text="@string/edit_estate_house_number"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_location"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_location"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_location" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_surface"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_surface"
+                android:text="@string/edit_estate_surface"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_surface"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_surface"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_surface" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_house_number"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_location"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_number_of_bathrooms"
-        app:layout_constraintRight_toRightOf="@id/fragment_edit_estate_number_of_bathrooms"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_location" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_surface"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="numberDecimal"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_surface"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_surface"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_surface" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_sheet_estate_icon_distance_school"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:contentDescription="@string/sheet_estate_distance_school"
-        android:padding="5dp"
-        android:src="@drawable/icon_estate_school"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_number_of_bathrooms"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_surface" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_sheet_estate_surface_unit"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_estate_surface_unit"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_surface"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_surface"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_surface" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_sheet_estate_title_distance_school"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:text="@string/edit_estate_distance_school"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_icon_distance_school"
-        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_school"
-        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_school" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_edit_estate_icon_number_of_rooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/edit_estate_numbers_of_rooms"
+                android:padding="5dp"
+                android:src="@drawable/icon_estate_room"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_surface" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_sheet_estate_distance_school"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_school"
-        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_school" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_number_of_rooms"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_number_of_rooms"
+                android:text="@string/edit_estate_numbers_of_rooms"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_rooms"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_number_of_rooms"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_rooms" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_sheet_estate_distance_unit_school"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_estate_distance_unit"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_distance_school"
-        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_distance_school"
-        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_distance_school" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_number_of_rooms"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="number"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_rooms"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_number_of_bathrooms"
+                app:layout_constraintRight_toRightOf="@id/fragment_edit_estate_number_of_bathrooms"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_title_number_of_rooms" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_sheet_estate_icon_distance_shop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/sheet_estate_distance_shop"
-        android:padding="5dp"
-        android:src="@drawable/icon_estate_shop"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_distance_school"
-        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_distance_school" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_edit_estate_icon_number_of_bathrooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/edit_estate_numbers_of_bathrooms"
+                android:padding="5dp"
+                android:src="@drawable/icon_estate_bathroom"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_number_of_rooms" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_sheet_estate_title_distance_shop"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:text="@string/edit_estate_distance_shop"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_icon_distance_shop"
-        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_shop"
-        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_shop" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_number_of_bathrooms"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_number_of_bathrooms"
+                android:text="@string/edit_estate_numbers_of_bathrooms"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_bathrooms"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_number_of_bathrooms"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_bathrooms" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_sheet_estate_distance_shop"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_shop"
-        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_shop" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_number_of_bathrooms"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="number"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_bathrooms"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_number_of_bathrooms"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_bathrooms" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_sheet_estate_distance_unit_shop"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_estate_distance_unit"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_distance_shop"
-        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_distance_shop"
-        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_distance_shop" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_edit_estate_icon_number_of_bedrooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/edit_estate_numbers_of_bedrooms"
+                android:padding="5dp"
+                android:src="@drawable/icon_estate_bedroom"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_number_of_bathrooms" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_sheet_estate_icon_distance_park"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/sheet_estate_distance_parc"
-        android:padding="5dp"
-        android:src="@drawable/icon_estate_parc"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_distance_school"
-        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_distance_shop" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_number_of_bedrooms"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_number_of_bedrooms"
+                android:text="@string/edit_estate_numbers_of_bedrooms"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_bedrooms"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_number_of_bedrooms"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_bedrooms" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_sheet_estate_title_distance_park"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:text="@string/edit_estate_distance_parc"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_icon_distance_park"
-        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_park"
-        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_park" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_number_of_bedrooms"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="number"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_number_of_bedrooms"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_number_of_bathrooms"
+                app:layout_constraintRight_toRightOf="@id/fragment_edit_estate_number_of_bathrooms"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_number_of_bedrooms" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_sheet_estate_distance_park"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_park"
-        app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_park" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_edit_estate_icon_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/edit_estate_house_number"
+                android:padding="5dp"
+                android:src="@drawable/icon_estate_location"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_number_of_bedrooms" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_sheet_estate_distance_unit_park"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_estate_distance_unit"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_distance_park"
-        app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_distance_park"
-        app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_distance_park" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_house_number"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_house_number"
+                android:text="@string/edit_estate_house_number"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_location"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_icon_location"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_location" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_street"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_street"
-        android:text="@string/edit_estate_street"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_street"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_street" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_house_number"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="number"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_icon_location"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_number_of_bathrooms"
+                app:layout_constraintRight_toRightOf="@id/fragment_edit_estate_number_of_bathrooms"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_location" />
 
-    <EditText
-        android:id="@+id/fragment_edit_estate_street"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:autofillHints="postalAddress"
-        android:inputType="text"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_street"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_house_number" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_sheet_estate_icon_distance_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:contentDescription="@string/sheet_estate_distance_school"
+                android:padding="5dp"
+                android:src="@drawable/icon_estate_school"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_number_of_bathrooms"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_icon_surface" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_additional_address"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_additional_address"
-        android:text="@string/edit_estate_additional_address"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_additional_address"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_title_street"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_additional_address" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_sheet_estate_title_distance_school"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@string/edit_estate_distance_school"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_icon_distance_school"
+                app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_school"
+                app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_school" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_additional_address"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:autofillHints=""
-        android:inputType="text"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_additional_address"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_street" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_sheet_estate_distance_school"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_school"
+                app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_school" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_zipCode"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_zipCode"
-        android:text="@string/edit_estate_zipCode"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_zipCode"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_title_additional_address"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_zipCode" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_sheet_estate_distance_unit_school"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_estate_distance_unit"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_distance_school"
+                app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_distance_school"
+                app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_distance_school" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_zipCode"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:autofillHints="postalCode"
-        android:inputType="number"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_zipCode"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_additional_address" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_sheet_estate_icon_distance_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/sheet_estate_distance_shop"
+                android:padding="5dp"
+                android:src="@drawable/icon_estate_shop"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_distance_school"
+                app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_distance_school" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_city"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_city"
-        android:text="@string/edit_estate_city"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_city"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_title_zipCode"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_city" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_sheet_estate_title_distance_shop"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@string/edit_estate_distance_shop"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_icon_distance_shop"
+                app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_shop"
+                app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_shop" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_city"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:autofillHints=""
-        android:inputType="text"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_city"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_zipCode" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_sheet_estate_distance_shop"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_shop"
+                app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_shop" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_edit_estate_title_country"
-        style="@style/TextAppearance.Material3.TitleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/fragment_edit_estate_country"
-        android:text="@string/edit_estate_country"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_country"
-        app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_title_city"
-        app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_country" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_sheet_estate_distance_unit_shop"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_estate_distance_unit"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_distance_shop"
+                app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_distance_shop"
+                app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_distance_shop" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_edit_estate_country"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:autofillHints=""
-        android:inputType="text"
-        app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_country"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_city" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_sheet_estate_icon_distance_park"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/sheet_estate_distance_parc"
+                android:padding="5dp"
+                android:src="@drawable/icon_estate_parc"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_icon_distance_school"
+                app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_distance_shop" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/fragment_edit_estate_button_validation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_estate_button_validation"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_country" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_sheet_estate_title_distance_park"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@string/edit_estate_distance_parc"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_icon_distance_park"
+                app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_icon_distance_park"
+                app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_icon_distance_park" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_sheet_estate_distance_park"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_sheet_estate_title_distance_park"
+                app:layout_constraintTop_toBottomOf="@id/fragment_sheet_estate_title_distance_park" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_sheet_estate_distance_unit_park"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_estate_distance_unit"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_sheet_estate_distance_park"
+                app:layout_constraintLeft_toRightOf="@id/fragment_sheet_estate_distance_park"
+                app:layout_constraintTop_toTopOf="@id/fragment_sheet_estate_distance_park" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_street"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_street"
+                android:text="@string/edit_estate_street"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_street"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_street" />
+
+            <EditText
+                android:id="@+id/fragment_edit_estate_street"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:autofillHints="postalAddress"
+                android:inputType="text"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_street"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_house_number" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_additional_address"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_additional_address"
+                android:text="@string/edit_estate_additional_address"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_additional_address"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_title_street"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_additional_address" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_additional_address"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:autofillHints=""
+                android:inputType="text"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_additional_address"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_street" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_zipCode"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_zipCode"
+                android:text="@string/edit_estate_zipCode"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_zipCode"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_title_additional_address"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_zipCode" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_zipCode"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:autofillHints="postalCode"
+                android:inputType="number"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_zipCode"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_additional_address" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_city"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_city"
+                android:text="@string/edit_estate_city"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_city"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_title_zipCode"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_city" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_city"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:autofillHints=""
+                android:inputType="text"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_city"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_zipCode" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_edit_estate_title_country"
+                style="@style/TextAppearance.Material3.TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/fragment_edit_estate_country"
+                android:text="@string/edit_estate_country"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_edit_estate_country"
+                app:layout_constraintLeft_toLeftOf="@id/fragment_edit_estate_title_city"
+                app:layout_constraintTop_toTopOf="@id/fragment_edit_estate_country" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_edit_estate_country"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:autofillHints=""
+                android:inputType="text"
+                app:layout_constraintLeft_toRightOf="@id/fragment_edit_estate_title_country"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_city" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragment_edit_estate_button_validation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_estate_button_validation"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_estate_country" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

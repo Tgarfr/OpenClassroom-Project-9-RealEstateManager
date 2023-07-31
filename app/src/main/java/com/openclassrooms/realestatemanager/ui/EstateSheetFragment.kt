@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.ui
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,9 +33,9 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class EstateSheetFragment(
-    private val estateSheetFragmentListener: EstateSheetFragmentListener
-    ) : Fragment(), EstatePicturesAdapter.EstatePicturesAdapterListener, OnMapReadyCallback {
+class EstateSheetFragment: Fragment(), EstatePicturesAdapter.EstatePicturesAdapterListener, OnMapReadyCallback {
+
+    private lateinit var estateSheetFragmentListener: EstateSheetFragmentListener
 
     interface EstateSheetFragmentListener {
         fun launchEstateEditFragment(estate: Estate)
@@ -84,6 +85,15 @@ class EstateSheetFragment(
         mapView.getMapAsync(this)
 
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (activity is EstateSheetFragmentListener) {
+            estateSheetFragmentListener = activity as EstateSheetFragmentListener
+        } else {
+            throw ClassCastException(activity.toString() + "must implement EstateSheetFragment.EstateSheetFragmentListener")
+        }
     }
 
     private fun initViews(view: View) {

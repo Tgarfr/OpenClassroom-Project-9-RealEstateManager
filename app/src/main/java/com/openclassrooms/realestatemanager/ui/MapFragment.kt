@@ -28,10 +28,9 @@ import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
 
 
-class MapFragment(
-    private val mapFragmentListener: MapFragmentListener
-): Fragment(), OnMapReadyCallback {
+class MapFragment: Fragment(), OnMapReadyCallback {
 
+    private lateinit var mapFragmentListener: MapFragmentListener
     private lateinit var context: Context
     private lateinit var viewModel: MapFragmentViewModel
     private lateinit var googleMap: GoogleMap
@@ -54,6 +53,15 @@ class MapFragment(
         }
 
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (activity is MapFragmentListener) {
+            mapFragmentListener = activity as MapFragmentListener
+        } else {
+            throw ClassCastException(activity.toString() + "must implement MapFragment.MapFragmentListener")
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

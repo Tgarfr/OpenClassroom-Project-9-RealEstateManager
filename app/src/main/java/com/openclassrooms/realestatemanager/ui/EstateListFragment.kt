@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,9 @@ import com.openclassrooms.realestatemanager.di.ViewModelFactory
 import com.openclassrooms.realestatemanager.model.Estate
 
 
-class EstateListFragment(
-    private val estateListFragmentListener: EstateListFragmentListener
-) : Fragment(), EstateListAdapter.EstateListAdapterListener {
+class EstateListFragment: Fragment(), EstateListAdapter.EstateListAdapterListener {
 
+    private lateinit var estateListFragmentListener: EstateListFragmentListener
     private lateinit var viewModel: EstateListFragmentViewModel
 
     interface EstateListFragmentListener {
@@ -36,6 +36,15 @@ class EstateListFragment(
         viewModel.getSelectedEstateLiveData().observe(viewLifecycleOwner) { estate -> estateListAdapter.selectedEstate(estate.id) }
 
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (activity is EstateListFragmentListener) {
+            estateListFragmentListener = activity as EstateListFragmentListener
+        } else {
+            throw ClassCastException(activity.toString() + "must implement EstateListFragment.EstateListFragmentListener")
+        }
     }
 
     override fun onEstateItemClick(estate: Estate) {
