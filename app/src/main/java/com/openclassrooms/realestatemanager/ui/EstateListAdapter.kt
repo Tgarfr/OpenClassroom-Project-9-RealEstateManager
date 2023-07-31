@@ -44,10 +44,10 @@ class EstateListAdapter(
 
         if (selectedEstateId == estateItem.estate.id) {
             holder.itemView.setBackgroundColor(ResourcesCompat.getColor(context.resources, R.color.estate_list_selected_estate, null))
-            holder.price.setHintTextColor(ResourcesCompat.getColor(context.resources, R.color.estate_list_selected_estate_text, null))
+            holder.price.setTextColor(ResourcesCompat.getColor(context.resources, R.color.estate_list_selected_estate_text, null))
         } else {
             holder.itemView.setBackgroundColor(ResourcesCompat.getColor(context.resources, R.color.design_default_color_background, null))
-            holder.price.setHintTextColor(ResourcesCompat.getColor(context.resources, R.color.estate_list_price, null))
+            holder.price.setTextColor(ResourcesCompat.getColor(context.resources, R.color.estate_list_price, null))
         }
 
         if (estateItem.pictureUri != null) {
